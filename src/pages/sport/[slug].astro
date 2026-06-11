@@ -1,0 +1,15 @@
+---
+import ContentPageLayout from '../../components/ContentPageLayout.astro';
+import { sportPages } from '../../data/sport';
+import { worldBySlug } from '../../data/worlds';
+import { nav } from '../../data/site';
+
+export function getStaticPaths() {
+  return sportPages.map((page) => ({ params: { slug: page.slug }, props: { page } }));
+}
+const { page } = Astro.props;
+const world = worldBySlug('/sport');
+const group = nav.find((g) => g.href === '/sport');
+const siblings = (group?.children ?? []).filter((c) => c.href !== `/sport/${page.slug}`);
+---
+<ContentPageLayout page={page} world={world} siblings={siblings} />

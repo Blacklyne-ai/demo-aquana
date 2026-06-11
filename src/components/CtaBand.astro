@@ -1,0 +1,47 @@
+---
+// Finales CTA-Band (Dark). Footer bleibt Info-only - keine doppelten CTAs.
+import Icon from './Icon.astro';
+import { site, telLink, whatsappLink, ticketLink } from '../data/site';
+interface Props {
+  title?: string;
+  text?: string;
+}
+const {
+  title = 'Dein Tag im <em>AQUANA</em> wartet.',
+  text = 'Vier Welten, ein Bad - Freizeitbad, Saunawelt, Sport und Gastronomie. Sichern Sie sich Ihre Tickets online oder rufen Sie uns einfach an.',
+} = Astro.props;
+---
+<section class="section-ink tide-horizon py-20 md:py-24 relative overflow-hidden">
+  <div class="absolute inset-0 grid-overlay grid-overlay-fade opacity-60" aria-hidden="true"></div>
+  <span class="ghost-mark ghost-mark-light -right-10 -bottom-24" data-text="AQUANA" data-parallax="0.07" aria-hidden="true"></span>
+  <div class="glow-orb" style="width: 480px; height: 480px; top: -180px; right: 2%; background: rgb(var(--rgb-aqua)); opacity: 0.12;" aria-hidden="true"></div>
+
+  <div class="container-mk relative">
+    <div class="max-w-3xl fade-in">
+      <span class="eyebrow eyebrow-light mb-5 inline-flex items-center gap-3" style="color: rgb(var(--rgb-aqua));">
+        <span class="led" aria-hidden="true" style="background: rgb(var(--rgb-aqua)); box-shadow: 0 0 0 3px rgb(var(--rgb-aqua) / 0.2), 0 0 10px rgb(var(--rgb-aqua) / 0.8);"></span>
+        Jetzt Besuch planen
+      </span>
+      <h2 class="heading-xl text-white text-balance mb-5 section-title section-title-light" set:html={title} />
+      <p class="text-lg text-white/70 leading-relaxed mb-8 max-w-2xl text-pretty">{text}</p>
+      <div class="flex flex-col sm:flex-row flex-wrap gap-3">
+        <a href={ticketLink} target="_blank" rel="noopener" class="btn btn-tide btn-lg">
+          <Icon name="Ticket" size={17} strokeWidth={2.2} />
+          Tickets online kaufen
+        </a>
+        <a href={telLink} class="btn btn-ghost btn-lg">
+          <Icon name="Phone" size={17} strokeWidth={2.3} />
+          {site.phoneDisplay}
+        </a>
+        <a href={whatsappLink} target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">
+          <Icon name="MessageCircle" size={18} strokeWidth={2.2} />
+          WhatsApp
+        </a>
+      </div>
+      <p class="text-sm text-white/45 mt-6 flex items-center gap-2">
+        <Icon name="MapPin" size={15} strokeWidth={2} />
+        {site.address.street}, {site.address.postcode} {site.address.city} · {site.address.region}
+      </p>
+    </div>
+  </div>
+</section>

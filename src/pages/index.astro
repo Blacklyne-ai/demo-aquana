@@ -1,0 +1,392 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import MapBlock from '../components/MapBlock.astro';
+import CtaBand from '../components/CtaBand.astro';
+import WorldCard from '../components/WorldCard.astro';
+import StatsBand from '../components/StatsBand.astro';
+import NewsCard from '../components/NewsCard.astro';
+import { site, hours, trustStrip, telLink, whatsappLink, ticketLink, mailFor } from '../data/site';
+import { worlds } from '../data/worlds';
+import { courses } from '../data/courses';
+import { news } from '../data/news';
+import { whyCards } from '../data/trust';
+import { langeNaechte } from '../data/sauna';
+import { priceTables } from '../data/prices';
+
+const topPrices = priceTables[0].rows.slice(0, 3);
+const nextNights = langeNaechte.slice(0, 3);
+---
+
+<Layout title="AQUANA - Euregio Freizeitbad Würselen bei Aachen" current="/">
+  <!-- ════════ SECTION 1 · HERO ════════ -->
+  <section class="relative min-h-[92vh] flex items-end overflow-hidden">
+    <img src="/images/artikel/fzb/wellenbecken.jpg" alt="Wellenbecken im AQUANA Freizeitbad Würselen" class="absolute inset-0 w-full h-full object-cover" width="1600" height="1000" loading="eager" fetchpriority="high" />
+    <div class="absolute inset-0 hero-overlay" aria-hidden="true"></div>
+    <span class="ghost-mark ghost-mark-light left-1/2 -translate-x-1/2 top-24 opacity-90" data-text="AQUANA" aria-hidden="true"></span>
+
+    <div class="container-mk relative z-10 w-full pt-32 pb-12 md:pb-16">
+      <div class="grid lg:grid-cols-12 gap-10 items-end">
+        <div class="lg:col-span-7">
+          <span class="eyebrow mb-6" style="color: rgb(var(--rgb-aqua-bright));">Euregio Freizeitbad · Würselen bei Aachen</span>
+          <h1 class="heading-display text-white section-title section-title-light hero-text-shadow text-balance">
+            Vier Welten. <em>Ein Bad.</em>
+          </h1>
+          <p class="text-lg md:text-xl text-white/85 leading-relaxed max-w-2xl mt-6 text-pretty hero-text-shadow">
+            Freizeitbad, Saunawelt, Sport und Gastronomie - mitten in der Euregio, für Gäste aus Deutschland und den Niederlanden.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 mt-9">
+            <a href={ticketLink} target="_blank" rel="noopener" class="btn btn-tide btn-lg">
+              <Icon name="Ticket" size={17} strokeWidth={2.2} />
+              Tickets online kaufen
+            </a>
+            <a href="/preise-zeiten" class="btn btn-glass btn-lg">
+              Preise & Öffnungszeiten
+              <Icon name="ArrowRight" size={16} strokeWidth={2.4} />
+            </a>
+          </div>
+          <div class="trust-strip text-white/75 mt-9">
+            {trustStrip.map((t) => <span>{t}</span>)}
+          </div>
+        </div>
+
+        <!-- Floating Trust-Cards -->
+        <div class="lg:col-span-5 flex flex-col gap-3 sm:flex-row lg:flex-col">
+          <div class="glass rounded-2xl p-5 flex-1 fade-in">
+            <div class="flex items-center gap-2 text-white/90 font-display font-bold text-sm uppercase tracking-wider">
+              <Icon name="Clock" size={16} strokeWidth={2.2} style="color: rgb(var(--rgb-aqua-bright))" />
+              Öffnungszeiten
+            </div>
+            <dl class="mt-3.5 space-y-2 text-[0.92rem]">
+              <div class="flex justify-between gap-3 text-white/80">
+                <dt class="flex items-center gap-1.5"><Icon name="WavesLadder" size={14} class="text-white/50" /> Freizeitbad</dt>
+                <dd class="text-white font-semibold text-right">Di-Fr 15-19 · Sa/So 10-19</dd>
+              </div>
+              <div class="flex justify-between gap-3 text-white/80">
+                <dt class="flex items-center gap-1.5"><Icon name="Flame" size={14} class="text-white/50" /> Sauna</dt>
+                <dd class="text-white font-semibold text-right">Mo-Do 10-22 · Fr bis 24</dd>
+              </div>
+            </dl>
+            <a href="/preise-zeiten" class="inline-flex items-center gap-1.5 mt-3.5 text-[0.82rem] font-display font-bold" style="color: rgb(var(--rgb-aqua-bright))">
+              Alle Zeiten <Icon name="ArrowRight" size={13} strokeWidth={2.5} />
+            </a>
+          </div>
+          <div class="glass rounded-2xl p-5 flex-1 fade-in stagger-1">
+            <div class="flex items-center gap-2.5">
+              <span class="accent-tile tint-tide" style="background: rgb(var(--rgb-aqua) / 0.18); color: rgb(var(--rgb-aqua-bright)); border-color: rgb(var(--rgb-aqua) / 0.3); width:44px; height:44px;">
+                <Icon name="Accessibility" size={22} strokeWidth={2} />
+              </span>
+              <div>
+                <div class="text-white font-display font-bold text-sm uppercase tracking-wider">Barrierefrei</div>
+                <div class="text-white/70 text-[0.86rem]">Stufenlos zugänglich · für alle</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats-Band -->
+  <section class="section-paper py-px">
+    <div class="container-mk -mt-10 md:-mt-12 relative z-20">
+      <div class="shadow-lift rounded-2xl overflow-hidden bg-white">
+        <StatsBand />
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ SECTION 2 · VIER WELTEN (Dark) ════════ -->
+  <section class="section-ink relative overflow-hidden py-20 md:py-28">
+    <div class="absolute inset-0 grid-overlay grid-overlay-fade opacity-50" aria-hidden="true"></div>
+    <div class="glow-orb" style="width:520px;height:520px;top:-160px;left:-80px;background:rgb(var(--rgb-aqua));opacity:0.1;" aria-hidden="true"></div>
+    <div class="container-mk relative">
+      <SectionHeading
+        eyebrow="Das AQUANA"
+        title="Vier Welten - <em>ein Bad.</em>"
+        intro="Unter einem Dach: ein Freizeitbad voller Action, eine ausgezeichnete Saunawelt, sportliche Angebote im und am Wasser und eine Gastronomie für die Stärkung dazwischen."
+        light={true}
+      />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
+        {worlds.map((w) => <WorldCard world={w} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Darum AQUANA -->
+  <section class="section-paper py-16 md:py-20">
+    <div class="container-mk">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {whyCards.map((c) => (
+          <div class="tile fade-in">
+            <span class="tile-icon tile-icon-outline"><Icon name={c.icon} size={22} strokeWidth={1.9} /></span>
+            <h3 class="font-display font-bold text-ink text-lg mt-1">{c.title}</h3>
+            <p class="text-muted text-[0.92rem] leading-relaxed text-pretty">{c.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ SECTION 3 · PREISE & ZEITEN ════════ -->
+  <section class="section-stone py-20 md:py-28">
+    <div class="container-mk">
+      <SectionHeading
+        eyebrow="Auf einen Blick"
+        title="Preise & <em>Öffnungszeiten.</em>"
+        intro="Die wichtigsten Infos vorab - alle Tarife, Wertkarten und Sonderöffnungszeiten finden Sie auf der Preise-&-Zeiten-Seite."
+        ctaHref="/preise-zeiten"
+        ctaLabel="Alle Preise ansehen"
+      />
+      <div class="grid lg:grid-cols-3 gap-5 mt-12">
+        <!-- Öffnungszeiten Bad -->
+        <div class="card-feature tint-bad card-accent fade-in">
+          <span class="accent-tile mb-4"><Icon name="WavesLadder" size={24} strokeWidth={1.9} /></span>
+          <h3 class="font-display font-extrabold text-ink text-xl">Öffnungszeiten Freizeitbad</h3>
+          <dl class="mt-4 divide-y divide-line text-[0.92rem]">
+            {hours.bad.map((h) => (
+              <div class="flex justify-between gap-3 py-2.5">
+                <dt class="text-muted">{h.day}</dt>
+                <dd class={`font-semibold text-right ${h.closed ? 'text-muted-light' : 'text-ink'}`}>{h.time}</dd>
+              </div>
+            ))}
+          </dl>
+          <p class="text-[0.82rem] text-muted-light mt-3">{hours.badNote}</p>
+        </div>
+        <!-- Öffnungszeiten Sauna -->
+        <div class="card-feature tint-sauna card-accent fade-in stagger-1">
+          <span class="accent-tile mb-4"><Icon name="Flame" size={24} strokeWidth={1.9} /></span>
+          <h3 class="font-display font-extrabold text-ink text-xl">Öffnungszeiten Sauna</h3>
+          <dl class="mt-4 divide-y divide-line text-[0.92rem]">
+            {hours.sauna.map((h) => (
+              <div class="flex justify-between gap-3 py-2.5">
+                <dt class="text-muted">{h.day}</dt>
+                <dd class="font-semibold text-right text-ink">{h.time}</dd>
+              </div>
+            ))}
+          </dl>
+          <p class="text-[0.82rem] text-muted-light mt-3">{hours.saunaNote}</p>
+        </div>
+        <!-- Top-Preise -->
+        <div class="card-feature tint-tide card-accent fade-in stagger-2">
+          <span class="accent-tile mb-4"><Icon name="Ticket" size={24} strokeWidth={1.9} /></span>
+          <h3 class="font-display font-extrabold text-ink text-xl">Beliebte Tarife</h3>
+          <dl class="mt-4 divide-y divide-line text-[0.92rem]">
+            {topPrices.map((p) => (
+              <div class="flex justify-between items-center gap-3 py-2.5">
+                <dt class="text-muted">{p.label}{p.sub && <span class="block text-[0.78rem] text-muted-light">{p.sub}</span>}</dt>
+                <dd class="font-extrabold text-ink text-right whitespace-nowrap">{p.price}</dd>
+              </div>
+            ))}
+          </dl>
+          <a href={ticketLink} target="_blank" rel="noopener" class="btn btn-tide btn-block mt-5">
+            <Icon name="Ticket" size={15} strokeWidth={2.2} /> Tickets online kaufen
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ SECTION 4 · SCHWIMMKURSE ════════ -->
+  <section class="section-paper py-20 md:py-28 tint-bad">
+    <div class="container-mk">
+      <SectionHeading
+        eyebrow="Schwimmen lernen im AQUANA"
+        title="In vier Stufen zum <em>sicheren Schwimmer.</em>"
+        intro="Von der Wassergewöhnung über den Anfängerkurs bis zum Bronzeabzeichen - und auch Erwachsene holen wir sicher ins Wasser."
+        ctaHref="/freizeitbad/schwimmkurse"
+        ctaLabel="Zu den Schwimmkursen"
+      />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
+        {courses.map((c) => (
+          <a href={`/freizeitbad/schwimmkurse/${c.slug}`} class="card group fade-in flex flex-col">
+            <span class="step-badge mb-4">{c.step}</span>
+            <h3 class="font-display font-extrabold text-ink text-lg leading-tight group-hover:text-tide transition-colors">{c.title}</h3>
+            <p class="text-[0.82rem] font-semibold text-tide mt-1">{c.audience}</p>
+            <p class="text-muted text-[0.9rem] leading-relaxed mt-3 flex-1 text-pretty">{c.lead}</p>
+            <div class="flex items-center justify-between mt-5 pt-4 border-t border-line">
+              <span class="text-[0.82rem] text-muted">{c.scope}</span>
+              <span class="font-display font-extrabold text-ink">{c.price.split(' ')[0]} €</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ SECTION 5 · SAUNA-HIGHLIGHT ════════ -->
+  <section class="relative overflow-hidden tint-sauna">
+    <div class="grid lg:grid-cols-2">
+      <div class="relative min-h-[340px] lg:min-h-[480px]">
+        <img src="/images/artikel/sauna/saunagarten_pool.jpg" alt="Sauna-Garten mit Pool im AQUANA" class="absolute inset-0 w-full h-full object-cover" width="1200" height="800" loading="lazy" />
+        <div class="absolute inset-0" style="background: linear-gradient(110deg, transparent 40%, rgb(6 27 54 / 0.25));" aria-hidden="true"></div>
+      </div>
+      <div class="section-ink py-20 md:py-28 px-6 md:px-12 lg:px-16 relative overflow-hidden">
+        <div class="glow-orb" style="width:380px;height:380px;bottom:-120px;right:-60px;background:rgb(var(--rgb-ember));opacity:0.16;" aria-hidden="true"></div>
+        <div class="relative max-w-xl">
+          <span class="world-badge mb-5"><Icon name="Flame" size={14} strokeWidth={2.3} /> Saunawelt · SaunaPremium</span>
+          <h2 class="heading-lg text-white section-title section-title-light text-balance">Aufgüsse, Sauna-Garten und <em>lange Saunanächte.</em></h2>
+          <p class="text-white/70 leading-relaxed mt-5 text-pretty">
+            Neun Saunen und Kabinen, ein grüner Sauna-Garten mit Pool und Aufgüsse, die in der ganzen Region für ihre Intensität bekannt sind. Freitags wird es lang - jede Saunanacht mit eigenem Motto.
+          </p>
+          <div class="mt-7 space-y-2.5">
+            {nextNights.map((n) => (
+              <div class="flex items-center gap-3 text-[0.92rem]">
+                <span class="font-mono font-bold text-white/90 w-[5.5rem]" style="color: rgb(var(--rgb-ember))">{n.date}</span>
+                <span class="text-white/75">{n.theme}</span>
+              </div>
+            ))}
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3 mt-8">
+            <a href="/saunawelt/aufgussplan" class="btn btn-tide btn-lg">Zum Aufgussplan <Icon name="ArrowRight" size={15} strokeWidth={2.5} /></a>
+            <a href="/saunawelt" class="btn btn-ghost btn-lg">Saunawelt entdecken</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ SECTION 6 · BARRIEREFREIHEIT ════════ -->
+  <section class="section-paper py-20 md:py-28">
+    <div class="container-mk">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div class="lg:col-span-5 fade-in">
+          <div class="photo-frame" data-tilt="3">
+            <img src="/images/artikel/barrierefreiheit/20250221_112951.jpg" alt="Barrierefreier Zugang im AQUANA" class="w-full aspect-[4/3] object-cover" width="700" height="525" loading="lazy" />
+          </div>
+        </div>
+        <div class="lg:col-span-7">
+          <span class="eyebrow mb-5" style="color: rgb(var(--rgb-tide))"><Icon name="Accessibility" size={15} strokeWidth={2.1} /> Für alle Gäste</span>
+          <h2 class="heading-lg section-title text-balance">Für alle zugänglich. <em>Wirklich für alle.</em></h2>
+          <p class="text-muted leading-relaxed mt-5 text-pretty">
+            Unser gesamtes Areal - vom Spaßbad über das Freibad bis zur Sauna - ist stufenlos zugänglich. Barrierefreie Umkleiden, Duschen und ein Rollstuhllift im Sportbecken sorgen für maximalen Komfort. Gäste mit „B"-Eintrag im Ausweis profitieren von freiem Eintritt für die Begleitperson, und es gibt Ermäßigungen ab GdB 50. Behinderten-Parkplätze direkt am Eingang runden unser Angebot ab.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-3 mt-7">
+            {[
+              ['Accessibility', 'Stufenlos befahrbar', 'Vom Spaßbad bis zur Sauna'],
+              ['Check', 'Rollstuhllift', 'Im Sportbecken, mit Tragetuch'],
+              ['Users', 'Begleitperson frei', 'Bei „B"-Eintrag im Ausweis'],
+              ['MapPin', 'Parkplätze am Eingang', 'Behinderten-Parkplätze direkt davor'],
+            ].map(([icon, t, s]) => (
+              <div class="flex items-start gap-3">
+                <span class="accent-tile tint-tide flex-shrink-0" style="width:40px;height:40px;"><Icon name={icon} size={18} strokeWidth={2} /></span>
+                <div>
+                  <div class="font-display font-bold text-ink text-[0.95rem]">{t}</div>
+                  <div class="text-muted text-[0.85rem]">{s}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <a href="/barrierefreiheit" class="arrow-link mt-8">Mehr zur Barrierefreiheit</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ SECTION 7 · AKTUELLES ════════ -->
+  <section class="section-stone py-20 md:py-28">
+    <div class="container-mk">
+      <SectionHeading
+        eyebrow="Aktuelles aus dem AQUANA"
+        title="Was bei uns gerade <em>los ist.</em>"
+        ctaHref="/aktuelles"
+        ctaLabel="Alle Neuigkeiten"
+      />
+      <div class="grid md:grid-cols-3 gap-5 mt-12">
+        {news.slice(0, 3).map((n) => <NewsCard item={n} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ SECTION 8 · GUTSCHEINE + NEWSLETTER ════════ -->
+  <section class="section-paper py-20 md:py-28">
+    <div class="container-mk grid lg:grid-cols-2 gap-5">
+      <!-- Gutschein -->
+      <div class="card-feature tint-tide card-accent flex flex-col md:flex-row gap-6 md:items-center fade-in">
+        <span class="accent-tile-solid accent-tile flex-shrink-0" style="width:64px;height:64px;"><Icon name="Gift" size={30} strokeWidth={1.9} /></span>
+        <div>
+          <h3 class="font-display font-extrabold text-ink text-xl">Verschenken Sie AQUANA-Freude</h3>
+          <p class="text-muted text-[0.95rem] leading-relaxed mt-2.5 text-pretty">
+            Das perfekte Geschenk für Jung und Alt. Verschenken Sie einen schönen Aufenthalt im AQUANA - den Gutscheinwert legen Sie selbst fest.
+          </p>
+          <a href="/gutscheine" class="btn btn-ink btn-sm mt-5">Gutschein verschenken <Icon name="ArrowRight" size={14} strokeWidth={2.4} /></a>
+        </div>
+      </div>
+      <!-- Newsletter -->
+      <div class="card-dark tint-aqua fade-in stagger-1 flex flex-col justify-center">
+        <span class="accent-tile mb-4" style="background: rgb(var(--rgb-aqua) / 0.15); color: rgb(var(--rgb-aqua-bright)); border-color: rgb(var(--rgb-aqua) / 0.3);"><Icon name="Mail" size={24} strokeWidth={1.9} /></span>
+        <h3 class="font-display font-extrabold text-white text-xl">Newsletter abonnieren</h3>
+        <p class="text-white/65 text-[0.95rem] leading-relaxed mt-2 text-pretty">Aktionen, neue Kurstermine und lange Saunanächte - kein Highlight verpassen.</p>
+        <form id="nl-form" class="flex flex-col sm:flex-row gap-2.5 mt-5">
+          <input type="email" required placeholder="Ihre E-Mail-Adresse" aria-label="E-Mail-Adresse" class="flex-1 rounded-pill px-5 py-3 text-[0.92rem] text-white bg-white/10 border border-white/20 placeholder:text-white/40 focus:outline-none focus:border-aqua" />
+          <button type="submit" class="btn btn-tide">Anmelden</button>
+        </form>
+        <p class="text-white/40 text-[0.78rem] mt-3">Mit dem Absenden öffnet sich Ihr E-Mail-Programm. Kein Tracking.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ SECTION 9 · ANFAHRT + KONTAKT ════════ -->
+  <section class="section-stone py-20 md:py-28">
+    <div class="container-mk">
+      <SectionHeading
+        eyebrow="So finden Sie uns"
+        title="Willy-Brandt-Ring 100, <em>Würselen.</em>"
+        intro="Mitten in der Euregio - aus Aachen und den Niederlanden schnell erreichbar. Nur 500 Meter vom Stadtzentrum Würselen."
+      />
+      <div class="grid lg:grid-cols-12 gap-5 mt-12">
+        <div class="lg:col-span-5 flex flex-col gap-3">
+          <a href={telLink} class="card flex items-center gap-4 group !py-5">
+            <span class="accent-tile tint-tide"><Icon name="Phone" size={22} strokeWidth={2} /></span>
+            <div>
+              <div class="text-[0.78rem] uppercase tracking-wider text-muted-light font-semibold">Telefon</div>
+              <div class="font-display font-bold text-ink text-lg group-hover:text-tide transition-colors">{site.phoneDisplay}</div>
+            </div>
+          </a>
+          <a href={whatsappLink} target="_blank" rel="noopener" class="card flex items-center gap-4 group !py-5">
+            <span class="accent-tile" style="background: rgb(var(--rgb-green) / 0.12); color: rgb(var(--rgb-green)); border-color: rgb(var(--rgb-green) / 0.25);"><Icon name="MessageCircle" size={22} strokeWidth={2} /></span>
+            <div>
+              <div class="text-[0.78rem] uppercase tracking-wider text-muted-light font-semibold">WhatsApp</div>
+              <div class="font-display font-bold text-ink text-lg">Schreiben Sie uns</div>
+            </div>
+          </a>
+          <a href={`mailto:${site.email}`} class="card flex items-center gap-4 group !py-5">
+            <span class="accent-tile tint-tide"><Icon name="Mail" size={22} strokeWidth={2} /></span>
+            <div>
+              <div class="text-[0.78rem] uppercase tracking-wider text-muted-light font-semibold">E-Mail</div>
+              <div class="font-display font-bold text-ink text-lg group-hover:text-tide transition-colors">{site.email}</div>
+            </div>
+          </a>
+          <div class="card flex items-start gap-4 !py-5">
+            <span class="accent-tile tint-tide flex-shrink-0"><Icon name="Bus" size={22} strokeWidth={2} /></span>
+            <div>
+              <div class="text-[0.78rem] uppercase tracking-wider text-muted-light font-semibold">ÖPNV (ASEAG)</div>
+              <div class="text-ink text-[0.92rem] leading-relaxed mt-0.5">Linie 21 bis Würselen-Mitte · Linie 51 bis Willy-Brandt-Ring · Linie WÜ1 bis WBK</div>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-7">
+          <MapBlock class="h-full min-h-[400px]" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ SECTION 10 · FINAL CTA ════════ -->
+  <CtaBand />
+</Layout>
+
+<script>
+  // Newsletter ohne Backend: öffnet das Mailprogramm mit der eingegebenen Adresse.
+  document.addEventListener('astro:page-load', () => {
+    const form = document.getElementById('nl-form') as HTMLFormElement | null;
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = (form.querySelector('input[type=email]') as HTMLInputElement)?.value || '';
+      const subject = encodeURIComponent('Newsletter-Anmeldung AQUANA');
+      const body = encodeURIComponent(`Ich möchte den AQUANA-Newsletter abonnieren.\n\nE-Mail: ${email}`);
+      window.location.href = `mailto:info@aquana.de?subject=${subject}&body=${body}`;
+    });
+  });
+</script>

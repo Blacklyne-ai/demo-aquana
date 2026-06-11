@@ -1,0 +1,156 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Icon from '../components/Icon.astro';
+import { hours, ticketLink } from '../data/site';
+import { priceTables, wertkarten, saunaAbos, parking, priceNotes, reducedNote, holidayHours, depositNote } from '../data/prices';
+
+const schema = {
+  '@type': 'WebPage',
+  name: 'Preise & Öffnungszeiten - AQUANA Würselen',
+};
+---
+<Layout title="Preise & Öffnungszeiten - AQUANA Würselen" description="Alle Eintrittspreise und Öffnungszeiten für Freizeitbad und Sauna im AQUANA Würselen - Tageskarten, Familienkarten, Wertkarten, Sauna-Abos und Parkplatzgebühren." current="/preise-zeiten" schema={schema}>
+  <PageHero
+    eyebrow="Auf einen Blick"
+    title="Preise & <em>Öffnungszeiten.</em>"
+    subtitle="Alle Tarife für Freizeitbad und Sauna, Wertkarten, Abos und Parkgebühren - verbindlich und transparent."
+    crumb="Preise & Zeiten"
+    tint="tide"
+    primary={{ href: ticketLink, label: 'Tickets online kaufen', external: true }}
+  />
+
+  <!-- Öffnungszeiten -->
+  <section class="section-paper py-16 md:py-20">
+    <div class="container-mk">
+      <SectionHeading eyebrow="Öffnungszeiten" title="Wann <em>geöffnet ist.</em>" />
+      <div class="grid lg:grid-cols-2 gap-5 mt-10">
+        <div class="card-feature tint-bad card-accent fade-in">
+          <span class="accent-tile mb-4"><Icon name="WavesLadder" size={24} strokeWidth={1.9} /></span>
+          <h3 class="font-display font-extrabold text-ink text-xl">Freizeitbad</h3>
+          <dl class="mt-4 divide-y divide-line">
+            {hours.bad.map((h) => (
+              <div class="flex justify-between gap-3 py-3">
+                <dt class="text-muted">{h.day}</dt>
+                <dd class={`font-semibold text-right ${h.closed ? 'text-muted-light' : 'text-ink'}`}>{h.time}</dd>
+              </div>
+            ))}
+          </dl>
+          <p class="text-[0.82rem] text-muted-light mt-3">{hours.badNote}</p>
+        </div>
+        <div class="card-feature tint-sauna card-accent fade-in stagger-1">
+          <span class="accent-tile mb-4"><Icon name="Flame" size={24} strokeWidth={1.9} /></span>
+          <h3 class="font-display font-extrabold text-ink text-xl">Sauna</h3>
+          <dl class="mt-4 divide-y divide-line">
+            {hours.sauna.map((h) => (
+              <div class="flex justify-between gap-3 py-3">
+                <dt class="text-muted">{h.day}</dt>
+                <dd class="font-semibold text-right text-ink">{h.time}</dd>
+              </div>
+            ))}
+          </dl>
+          <p class="text-[0.82rem] text-muted-light mt-3">{hours.saunaNote}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preise (Bad + Sauna) -->
+  <section class="section-stone py-16 md:py-20">
+    <div class="container-mk">
+      <SectionHeading eyebrow="Eintrittspreise" title="Faire Preise für <em>die ganze Familie.</em>" />
+      <div class="grid lg:grid-cols-2 gap-5 mt-10">
+        {priceTables.map((tbl) => (
+          <div class="rounded-2xl bg-white border border-line overflow-hidden fade-in">
+            <div class="px-6 py-5 border-b border-line">
+              <h3 class="font-display font-extrabold text-ink text-lg">{tbl.title}</h3>
+              {tbl.note && <p class="text-[0.8rem] text-muted-light mt-0.5">{tbl.note}</p>}
+            </div>
+            <table class="w-full text-[0.92rem]">
+              <tbody>
+                {tbl.rows.map((r) => (
+                  <tr class="border-b border-line/70 last:border-0">
+                    <td class="px-6 py-3 align-top">
+                      <div class="text-ink font-medium">{r.label}</div>
+                      {r.sub && <div class="text-[0.78rem] text-muted-light">{r.sub}</div>}
+                    </td>
+                    <td class="px-3 py-3 text-right font-extrabold text-ink whitespace-nowrap align-top">{r.price}</td>
+                    <td class="px-6 py-3 text-right text-muted whitespace-nowrap align-top text-[0.86rem]">{r.reduced ?? ''}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ))}
+      </div>
+      <p class="text-[0.82rem] text-muted mt-5 max-w-4xl">{reducedNote}</p>
+    </div>
+  </section>
+
+  <!-- Wertkarten + Abos + Parken -->
+  <section class="section-paper py-16 md:py-20">
+    <div class="container-mk grid lg:grid-cols-3 gap-5">
+      <div class="card fade-in">
+        <h3 class="font-display font-extrabold text-ink text-lg flex items-center gap-2"><Icon name="HandCoins" size={20} class="text-tide" /> Wertkarten</h3>
+        <dl class="mt-4 divide-y divide-line text-[0.9rem]">
+          {wertkarten.map((r) => (
+            <div class="flex justify-between gap-3 py-2.5">
+              <dt class="text-muted">{r.label}<span class="block text-[0.78rem] text-tide font-semibold">{r.reduced}</span></dt>
+              <dd class="font-extrabold text-ink whitespace-nowrap">{r.price}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+      <div class="card fade-in stagger-1">
+        <h3 class="font-display font-extrabold text-ink text-lg flex items-center gap-2"><Icon name="Flame" size={20} class="text-ember" /> Sauna-Abos</h3>
+        <dl class="mt-4 divide-y divide-line text-[0.9rem]">
+          {saunaAbos.map((r) => (
+            <div class="flex justify-between gap-3 py-2.5">
+              <dt class="text-muted">{r.label}<span class="block text-[0.78rem] text-muted-light">{r.sub}</span></dt>
+              <dd class="font-extrabold text-ink whitespace-nowrap">{r.price}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+      <div class="card fade-in stagger-2">
+        <h3 class="font-display font-extrabold text-ink text-lg flex items-center gap-2"><Icon name="MapPin" size={20} class="text-tide" /> Parkplatz</h3>
+        <dl class="mt-4 divide-y divide-line text-[0.9rem]">
+          {parking.map((r) => (
+            <div class="flex justify-between gap-3 py-2.5">
+              <dt class="text-muted">{r.label}<span class="block text-[0.78rem] text-muted-light">{r.sub}</span></dt>
+              <dd class="font-extrabold text-ink whitespace-nowrap">{r.price}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hinweise -->
+  <section class="section-stone py-16 md:py-20">
+    <div class="container-mk grid lg:grid-cols-2 gap-8">
+      <div>
+        <h3 class="font-display font-extrabold text-ink text-lg">Bitte beachten Sie</h3>
+        <ul class="mt-5 space-y-3">
+          {priceNotes.map((n) => (
+            <li class="flex items-start gap-2.5 text-[0.92rem] text-ink fade-in"><Icon name="Check" size={17} strokeWidth={2.4} class="mt-0.5 flex-shrink-0 text-tide" />{n}</li>
+          ))}
+        </ul>
+        <p class="text-[0.84rem] text-muted mt-5">{depositNote}</p>
+      </div>
+      <div>
+        <h3 class="font-display font-extrabold text-ink text-lg flex items-center gap-2"><Icon name="CalendarDays" size={20} class="text-tide" /> Feiertage</h3>
+        <ul class="mt-5 space-y-3">
+          {holidayHours.map((n) => (
+            <li class="flex items-start gap-2.5 text-[0.92rem] text-ink fade-in"><Icon name="Info" size={17} strokeWidth={2.2} class="mt-0.5 flex-shrink-0 text-tide" />{n}</li>
+          ))}
+        </ul>
+        <a href={ticketLink} target="_blank" rel="noopener" class="btn btn-tide mt-8"><Icon name="Ticket" size={15} strokeWidth={2.2} /> Tickets online kaufen</a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

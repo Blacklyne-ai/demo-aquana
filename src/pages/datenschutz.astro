@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../data/site';
+---
+<Layout title="Datenschutz - AQUANA Würselen" description="Datenschutzerklärung des AQUANA Würselen." current="/datenschutz" noindex={true}>
+  <PageHero eyebrow="Rechtliches" title="Datenschutz" crumb="Datenschutz" tint="tide" />
+
+  <section class="section-paper py-12 md:py-16">
+    <div class="container-narrow">
+      <div class="legal-prose">
+        <p>Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften (DSGVO) sowie dieser Datenschutzerklärung.</p>
+
+        <h2>Verantwortlicher</h2>
+        <p>
+          {site.legalName}<br />
+          {site.address.street}, {site.address.postcode} {site.address.city}<br />
+          Telefon: {site.phoneDisplay} · E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+
+        <h2>Erhebung und Verarbeitung personenbezogener Daten</h2>
+        <p>Die Nutzung dieser Website ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name oder E-Mail-Adresse) erhoben werden, erfolgt dies stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben.</p>
+
+        <h2>Cookies</h2>
+        <p>Diese Website verwendet ausschließlich technisch notwendige Cookies. Es findet kein Tracking und keine Analyse durch Drittdienste statt. Cookies richten auf Ihrem Rechner keinen Schaden an und enthalten keine Viren.</p>
+
+        <h2>Server-Log-Dateien</h2>
+        <p>Der Provider der Seiten erhebt und speichert automatisch Informationen in Server-Log-Dateien, die Ihr Browser automatisch übermittelt (Browsertyp und -version, verwendetes Betriebssystem, Referrer-URL, Hostname des zugreifenden Rechners, Uhrzeit der Serveranfrage). Diese Daten sind nicht bestimmten Personen zuordenbar und werden nicht mit anderen Datenquellen zusammengeführt.</p>
+
+        <h2>Kontaktaufnahme</h2>
+        <p>Wenn Sie uns per E-Mail oder WhatsApp kontaktieren, werden Ihre Angaben zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
+
+        <h2>Newsletter</h2>
+        <p>Wenn Sie unseren Newsletter beziehen möchten, benötigen wir Ihre E-Mail-Adresse. Diese verwenden wir ausschließlich für den Versand des Newsletters und geben sie nicht an Dritte weiter. Die Einwilligung können Sie jederzeit widerrufen, etwa über den Austragen-Link im Newsletter.</p>
+
+        <h2>Ihre Rechte</h2>
+        <p>Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen wenden Sie sich bitte an die im Impressum angegebene Adresse.</p>
+
+        <p class="text-[0.85rem]"><em>Hinweis: Diese Datenschutzerklärung dient der Demonstration und ist vor dem Live-Gang durch den Betreiber rechtlich zu prüfen und zu ergänzen.</em></p>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+
+const sections = [
+  {
+    icon: 'ShieldCheck',
+    title: 'Allgemeines & Wertsachen',
+    rules: [
+      'Die Haus- und Badeordnung dient der Sicherheit, Ordnung und Sauberkeit im ganzen AQUANA - einschließlich Freibad und Saunagarten.',
+      'Bitte nehmen Sie keine Wertgegenstände mit ins Bad. Garderobenschränke und Wertfächer sind ordnungsgemäß zu verschließen; der sichere Verschluss ist zu kontrollieren.',
+      'Schränke und Wertfächer, die nach Betriebsende noch verschlossen sind, werden vom Personal geöffnet; gefundene Sachen werden als Fundgegenstände behandelt.',
+    ],
+  },
+  {
+    icon: 'WavesLadder',
+    title: 'Im Freizeitbad',
+    rules: [
+      'Im AQUANA ist übliche Badekleidung zu tragen (z. B. Schwimmhose, -anzug, Bikini, Burkini, Badeshorts); Straßenkleidung ist nicht gestattet.',
+      'Die Wasserattraktionen verlangen Umsicht und Rücksichtnahme auf andere Badegäste.',
+      'Die Sprunganlage darf nur nach Freigabe durch das Personal benutzt werden - der Sprungbereich muss frei sein, es betritt nur eine Person das Brett.',
+      'Rutschen dürfen nur entsprechend der aushängenden Beschilderung benutzt werden; Sicherheitsabstand einhalten, Landebereich sofort verlassen.',
+      'Seitliches Einspringen sowie das Hineinstoßen oder Werfen anderer Personen in die Becken sind untersagt.',
+    ],
+  },
+  {
+    icon: 'Flame',
+    title: 'In der Sauna',
+    rules: [
+      'Führen Sie die an der Kasse ausgehändigten Eintrittscoins bis zum Verlassen des AQUANA bei sich.',
+      'Die AQUANA-Sauna ist ein textilfreier Bereich - Badekleidung wird nicht getragen.',
+      'Im Aufenthaltsbereich der Sauna ist ein Bademantel zu tragen oder ein Saunatuch umzubinden.',
+    ],
+  },
+];
+---
+<Layout title="Haus- & Badeordnung - AQUANA Würselen" description="Die Haus- und Badeordnung des AQUANA dient der Sicherheit, Ordnung und Sauberkeit - die wichtigsten Regeln für Freizeitbad und Sauna im Überblick." current="/haus-und-badeordnung">
+  <PageHero
+    eyebrow="Für ein sicheres Miteinander"
+    title="Haus- & <em>Badeordnung.</em>"
+    subtitle="Die Haus- und Badeordnung dient der Sicherheit, Ordnung und Sauberkeit im ganzen AQUANA - einschließlich Freibad und Saunagarten. Hier die wichtigsten Regeln im Überblick."
+    crumb="Haus- & Badeordnung"
+    tint="tide"
+  />
+
+  <section class="section-paper py-16 md:py-24">
+    <div class="container-mk">
+      <div class="grid lg:grid-cols-3 gap-5">
+        {sections.map((s) => (
+          <div class="card-feature tint-tide card-accent fade-in flex flex-col">
+            <span class="accent-tile mb-4"><Icon name={s.icon} size={24} strokeWidth={1.9} /></span>
+            <h2 class="font-display font-extrabold text-ink text-lg">{s.title}</h2>
+            <ul class="mt-4 space-y-3">
+              {s.rules.map((r) => (
+                <li class="flex items-start gap-2.5 text-[0.9rem] text-ink/85 leading-relaxed"><Icon name="Check" size={16} strokeWidth={2.4} class="mt-0.5 flex-shrink-0 text-accent" />{r}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <p class="mt-10 rounded-xl bg-tide/5 border border-tide/15 px-5 py-4 text-[0.9rem] text-ink/80 flex items-start gap-3 max-w-3xl">
+        <Icon name="Info" size={18} strokeWidth={2.2} class="mt-0.5 flex-shrink-0 text-tide" />
+        Die vollständige, rechtsverbindliche Haus- und Badeordnung hängt im AQUANA aus und ist an der Kasse erhältlich.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import MapBlock from '../components/MapBlock.astro';
+import Icon from '../components/Icon.astro';
+import { site, telLink, whatsappLink, mailLink } from '../data/site';
+
+const tiles = [
+  { icon: 'MessageCircle', label: 'WhatsApp', value: 'Schreiben Sie uns direkt', href: whatsappLink, ext: true, kind: 'green' },
+  { icon: 'Phone', label: 'Telefon', value: site.phoneDisplay, href: telLink },
+  { icon: 'Mail', label: 'E-Mail', value: site.email, href: mailLink },
+];
+---
+<Layout title="Kontakt - AQUANA Würselen" description="Kontaktieren Sie das AQUANA Würselen per WhatsApp, Telefon oder E-Mail. Willy-Brandt-Ring 100, 52146 Würselen." current="/kontakt">
+  <PageHero
+    eyebrow="Schreiben Sie uns"
+    title="Wir sind <em>für Sie da.</em>"
+    subtitle="Fragen zu Preisen, Kursen, Gruppen oder Gutscheinen? Am schnellsten erreichen Sie uns per WhatsApp, Telefon oder E-Mail."
+    crumb="Kontakt"
+    tint="tide"
+    primary={{ href: whatsappLink, label: 'WhatsApp schreiben', external: true }}
+  />
+
+  <section class="section-paper py-16 md:py-24">
+    <div class="container-mk">
+      <div class="grid sm:grid-cols-3 gap-4">
+        {tiles.map((t) => (
+          <a href={t.href} target={t.ext ? '_blank' : undefined} rel={t.ext ? 'noopener' : undefined} class="card group !py-7 text-center fade-in">
+            <span class={`accent-tile mx-auto ${t.kind === 'green' ? '' : 'tint-tide'}`} style={t.kind === 'green' ? 'background: rgb(var(--rgb-green)/0.12); color: rgb(var(--rgb-green)); border-color: rgb(var(--rgb-green)/0.25);' : ''}><Icon name={t.icon} size={24} strokeWidth={2} /></span>
+            <div class="text-[0.78rem] uppercase tracking-wider text-muted-light font-semibold mt-4">{t.label}</div>
+            <div class="font-display font-bold text-ink text-lg group-hover:text-tide transition-colors break-words">{t.value}</div>
+          </a>
+        ))}
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-5 mt-5">
+        <div class="lg:col-span-5 card !p-7">
+          <h3 class="font-display font-extrabold text-ink text-lg">AQUANA</h3>
+          <p class="text-muted mt-1">{site.longName}</p>
+          <dl class="mt-5 space-y-3 text-[0.92rem]">
+            <div class="flex items-start gap-3"><Icon name="MapPin" size={17} class="text-tide mt-0.5 flex-shrink-0" /><span class="text-ink">{site.address.street}<br />{site.address.postcode} {site.address.city}</span></div>
+            <div class="flex items-center gap-3"><Icon name="Phone" size={17} class="text-tide flex-shrink-0" /><a href={telLink} class="text-ink hover:text-tide transition-colors">{site.phoneDisplay}</a></div>
+            <div class="flex items-center gap-3"><Icon name="FileText" size={17} class="text-tide flex-shrink-0" /><span class="text-muted">Fax {site.faxDisplay}</span></div>
+            <div class="flex items-center gap-3"><Icon name="Mail" size={17} class="text-tide flex-shrink-0" /><a href={mailLink} class="text-ink hover:text-tide transition-colors break-all">{site.email}</a></div>
+          </dl>
+        </div>
+        <div class="lg:col-span-7">
+          <MapBlock class="h-full min-h-[360px]" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

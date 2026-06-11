@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { site, mailFor } from '../data/site';
+
+const jobs = [
+  { title: 'Rettungsschwimmer (m/w/d)', text: 'In Vollzeit, Teilzeit oder als Aushilfe auf Minijobbasis (538 €).' },
+  { title: 'Fachangestellte/r für Bäderbetriebe (m/w/d)', text: 'In Vollzeit oder in Teilzeit.' },
+  { title: 'Reinigungskraft für den Garderobendienst (m/w/d)', text: 'Für unseren Garderobenbereich, als Aushilfe auf Minijobbasis oder in Teilzeit.' },
+  { title: 'Mitarbeiter/in Imbisskasse & Spülküche (m/w/d)', text: 'Für unsere Freizeitbad-Gastronomie, als Aushilfe auf Minijobbasis oder in Teilzeit.' },
+  { title: 'Schwimmlehrer/in & Schwimmtrainer/in (m/w/d)', text: 'Mit gültigem Erste-Hilfe-Kurs und Rettungsschwimmabzeichen Silber (beides nicht älter als zwei Jahre); idealerweise mit Trainerschein.' },
+];
+---
+<Layout title="Job-Angebote - AQUANA Würselen" description="Arbeiten im AQUANA: offene Stellen als Rettungsschwimmer, Fachangestellte für Bäderbetriebe, Schwimmlehrer und in der Gastronomie. Jetzt bewerben." current="/jobs">
+  <PageHero
+    eyebrow="Jobs im AQUANA"
+    title="Werden Sie Teil <em>unseres Teams.</em>"
+    subtitle="Vom Rettungsschwimmer über die Bäderbetriebe bis zur Gastronomie - im AQUANA sorgen viele Hände für einen unbeschwerten Badetag. Wir freuen uns auf Ihre Bewerbung."
+    crumb="Job-Angebote"
+    image="/images/artikel/sport/aquacycling/aquacycling_6.jpg"
+    imageAlt="Team im AQUANA"
+    tint="tide"
+    primary={{ href: mailFor('Bewerbung AQUANA'), label: 'Jetzt bewerben' }}
+  />
+
+  <section class="section-paper py-16 md:py-24">
+    <div class="container-mk">
+      <div class="grid lg:grid-cols-2 gap-4">
+        {jobs.map((j) => (
+          <div class="card-feature tint-tide card-accent flex items-start gap-5 fade-in">
+            <span class="accent-tile flex-shrink-0"><Icon name="Briefcase" size={22} strokeWidth={1.9} /></span>
+            <div>
+              <h3 class="font-display font-bold text-ink text-[1.08rem]">{j.title}</h3>
+              <p class="text-muted text-[0.92rem] leading-relaxed mt-2 text-pretty">{j.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 rounded-2xl bg-ink-deep text-white p-8 md:p-10 fade-in relative overflow-hidden">
+        <div class="glow-orb" style="width:300px;height:300px;top:-100px;right:-40px;background:rgb(var(--rgb-aqua));opacity:0.15;" aria-hidden="true"></div>
+        <div class="relative">
+          <h3 class="font-display font-extrabold text-white text-xl">So bewerben Sie sich</h3>
+          <p class="text-white/70 leading-relaxed mt-3 max-w-2xl text-pretty">Senden Sie uns Ihre Bewerbung mit den üblichen Unterlagen per E-Mail oder Post an:</p>
+          <p class="text-white/90 mt-3 font-medium">{site.legalName}<br />Willy-Brandt-Ring 100, 52146 Würselen</p>
+          <a href={mailFor('Bewerbung AQUANA')} class="btn btn-tide mt-6"><Icon name="Mail" size={15} strokeWidth={2.2} /> {site.email}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

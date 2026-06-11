@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import MapBlock from '../components/MapBlock.astro';
+import Icon from '../components/Icon.astro';
+import { site, telLink } from '../data/site';
+
+const bus = [
+  { line: 'Linie 21', stop: 'bis Haltestelle Würselen-Mitte' },
+  { line: 'Linie 51', stop: 'bis Haltestelle Willy-Brandt-Ring, von dort Fußweg zum AQUANA' },
+  { line: 'Linie WÜ1', stop: 'bis Haltestelle WBK' },
+];
+---
+<Layout title="Anfahrt - AQUANA Würselen" description="So finden Sie das AQUANA: Willy-Brandt-Ring 100, 52146 Würselen. Mit dem Auto, der ASEAG (Linien 21, 51, WÜ1) - aus Aachen und den Niederlanden schnell erreichbar." current="/anfahrt">
+  <PageHero
+    eyebrow="So finden Sie uns"
+    title="Willy-Brandt-Ring 100, <em>Würselen.</em>"
+    subtitle="Mitten in der Euregio - nur 500 Meter vom Stadtzentrum Würselen und aus Aachen wie aus den Niederlanden schnell erreichbar."
+    crumb="Anfahrt"
+    tint="tide"
+    primary={{ href: site.google.mapsUrl, label: 'Route planen', external: true }}
+  />
+
+  <section class="section-paper py-16 md:py-24">
+    <div class="container-mk grid lg:grid-cols-12 gap-5">
+      <div class="lg:col-span-5 flex flex-col gap-3">
+        <div class="card flex items-start gap-4 !py-5">
+          <span class="accent-tile tint-tide flex-shrink-0"><Icon name="MapPin" size={22} strokeWidth={2} /></span>
+          <div>
+            <div class="text-[0.78rem] uppercase tracking-wider text-muted-light font-semibold">Adresse</div>
+            <div class="font-display font-bold text-ink text-lg">{site.address.street}</div>
+            <div class="text-muted">{site.address.postcode} {site.address.city} · {site.address.region}</div>
+          </div>
+        </div>
+        <div class="card flex items-start gap-4 !py-5">
+          <span class="accent-tile tint-tide flex-shrink-0"><Icon name="Bus" size={22} strokeWidth={2} /></span>
+          <div>
+            <div class="text-[0.78rem] uppercase tracking-wider text-muted-light font-semibold mb-2">Mit der ASEAG</div>
+            <ul class="space-y-1.5">
+              {bus.map((b) => (
+                <li class="text-[0.92rem] text-ink"><span class="font-bold">{b.line}</span> <span class="text-muted">{b.stop}</span></li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div class="card flex items-start gap-4 !py-5">
+          <span class="accent-tile tint-tide flex-shrink-0"><Icon name="Phone" size={22} strokeWidth={2} /></span>
+          <div>
+            <div class="text-[0.78rem] uppercase tracking-wider text-muted-light font-semibold">Telefon</div>
+            <a href={telLink} class="font-display font-bold text-ink text-lg hover:text-tide transition-colors">{site.phoneDisplay}</a>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-7">
+        <MapBlock class="h-full min-h-[420px]" />
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

@@ -1,0 +1,94 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import Icon from '../../components/Icon.astro';
+import { ticketLink } from '../../data/site';
+import { cabins, langeNaechte } from '../../data/sauna';
+
+const topics = [
+  { href: '/saunawelt/saunieren', icon: 'Flame', label: 'Saunieren', text: 'Neun Saunen und Kabinen von 45 bis 90 °C.' },
+  { href: '/saunawelt/aufgussplan', icon: 'CalendarDays', label: 'Aufgussplan', text: 'Aufgüsse zur vollen Stunde, auf Wunsch mit Musik.' },
+  { href: '/saunawelt/besondere-aufguesse', icon: 'Sparkles', label: 'Besondere Aufgüsse', text: '28 Aufgussdüfte - in der ganzen Region bekannt.' },
+  { href: '/saunawelt/sauna-garten', icon: 'Leaf', label: 'Sauna-Garten', text: 'Grüner Garten mit Pool bei angenehmen 27 °C.' },
+  { href: '/saunawelt/abo-preise', icon: 'HandCoins', label: 'Sauna Abo Preise', text: 'BASIC und PREMIUM - regelmäßig günstiger saunieren.' },
+  { href: '/saunawelt/infrarotkabine', icon: 'ThermometerSun', label: 'Infrarotkabine', text: 'Gesunde Tiefenwärme bei 60 °C.' },
+  { href: '/saunawelt/massagen-wellness', icon: 'HandPlatter', label: 'Massagen & Wellness', text: 'medi stream® spa - Entspannung auf Knopfdruck.' },
+  { href: '/saunawelt/lange-saunanaechte', icon: 'Moon', label: 'Lange Saunanächte', text: 'Freitags bis 01:00 Uhr, jede mit eigenem Motto.' },
+  { href: '/saunawelt/wellnesssamstage', icon: 'Sun', label: 'Wellnesssamstage', text: 'Samstags ganz in Ruhe entspannen.' },
+  { href: '/saunawelt/sauna-tipps', icon: 'Info', label: 'Sauna-Tipps', text: 'Wissenswertes rund ums Saunieren.' },
+];
+const nextNights = langeNaechte.slice(0, 6);
+---
+<Layout title="Saunawelt - AQUANA Würselen" description="Neun Saunen und Kabinen, Sauna-Garten mit Pool, Aufgüsse und lange Saunanächte - die SaunaPremium-Saunawelt im AQUANA Würselen." current="/saunawelt">
+  <PageHero
+    eyebrow="Welt 02 · Saunawelt"
+    title="Aufgüsse, Sauna-Garten und <em>echte Entspannung.</em>"
+    subtitle="Neun Saunen und Kabinen, ein grüner Sauna-Garten mit Pool und Aufgüsse, die in der ganzen Region bekannt sind. Vom Deutschen Sauna-Bund mit dem Qualitätszeichen SaunaPremium ausgezeichnet."
+    crumb="Saunawelt"
+    image="/images/artikel/sauna/saunagarten1.jpg"
+    imageAlt="Sauna-Garten im AQUANA"
+    ghost="SAUNA"
+    tint="sauna"
+    primary={{ href: ticketLink, label: 'Tickets online kaufen', external: true }}
+    secondary={{ href: '/saunawelt/aufgussplan', label: 'Zum Aufgussplan' }}
+  />
+
+  <!-- Themen -->
+  <section class="section-paper py-16 md:py-24 tint-sauna">
+    <div class="container-mk">
+      <SectionHeading eyebrow="In der Saunawelt" title="Wärme in <em>vielen Facetten.</em>" />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
+        {topics.map((t) => (
+          <a href={t.href} class="tile group fade-in">
+            <span class="accent-tile"><Icon name={t.icon} size={24} strokeWidth={1.9} /></span>
+            <h3 class="font-display font-bold text-ink text-lg mt-1 group-hover:text-accent transition-colors">{t.label}</h3>
+            <p class="text-muted text-[0.92rem] leading-relaxed text-pretty flex-1">{t.text}</p>
+            <span class="inline-flex items-center gap-1.5 mt-3 font-display font-bold text-accent text-sm">Mehr <Icon name="ArrowRight" size={15} strokeWidth={2.5} class="transition-transform group-hover:translate-x-1" /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Saunen & Kabinen -->
+  <section class="section-ink py-20 md:py-28 relative overflow-hidden tint-sauna">
+    <div class="absolute inset-0 grid-overlay grid-overlay-fade opacity-50" aria-hidden="true"></div>
+    <div class="glow-orb" style="width:480px;height:480px;top:-150px;left:-60px;background:rgb(var(--rgb-ember));opacity:0.14;" aria-hidden="true"></div>
+    <div class="container-mk relative">
+      <SectionHeading eyebrow="Neun Welten der Wärme" title="Unsere <em>Saunen & Kabinen.</em>" light={true} ctaHref="/saunawelt/saunieren" ctaLabel="Alle Saunen" />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
+        {cabins.map((c) => (
+          <div class="card-dark tint-sauna fade-in">
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="font-display font-bold text-white text-[1.05rem]">{c.name}</h3>
+              <span class="world-badge !py-1 !px-2.5 !text-[0.62rem] flex-shrink-0">{c.temp}</span>
+            </div>
+            <p class="text-white/65 text-[0.88rem] leading-relaxed mt-3 text-pretty">{c.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Lange Saunanächte -->
+  <section class="section-stone py-20 md:py-28 tint-sauna">
+    <div class="container-mk">
+      <SectionHeading eyebrow="Events" title="Lange <em>Saunanächte 2026.</em>" intro="Freitags bis 01:00 Uhr - jede Nacht mit eigenem Motto." ctaHref="/saunawelt/lange-saunanaechte" ctaLabel="Alle Termine" />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
+        {nextNights.map((n) => (
+          <div class="card flex items-center gap-4 fade-in">
+            <span class="step-badge !rounded-full flex-shrink-0" style="--rgb-accent: var(--rgb-ember)"><Icon name="Moon" size={20} strokeWidth={2} /></span>
+            <div>
+              <div class="font-mono font-bold text-ember-deep text-[0.92rem]">{n.date}</div>
+              <div class="font-display font-bold text-ink">{n.theme}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../data/site';
+---
+<Layout title="Impressum - AQUANA Würselen" description="Impressum des AQUANA - Euregio Freizeitbad Würselen GmbH & Co. KG." current="/impressum" noindex={true}>
+  <PageHero eyebrow="Rechtliches" title="Impressum" crumb="Impressum" tint="tide" />
+
+  <section class="section-paper py-12 md:py-16">
+    <div class="container-narrow">
+      <div class="legal-prose">
+        <h2>Angaben gemäß § 5 TMG</h2>
+        <p>
+          {site.legalName}<br />
+          {site.address.street}<br />
+          {site.address.postcode} {site.address.city}
+        </p>
+
+        <h3>Kontakt</h3>
+        <p>
+          Telefon: {site.phoneDisplay}<br />
+          Telefax: {site.faxDisplay}<br />
+          E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+
+        <h3>Vertreten durch</h3>
+        <p>{site.ceo}</p>
+
+        <h3>Registereintrag</h3>
+        <p>{site.registry}</p>
+
+        <h3>Umsatzsteuer-ID</h3>
+        <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />{site.ustId}</p>
+
+        <h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
+        <p>{site.ceo}<br />{site.address.street}, {site.address.postcode} {site.address.city}</p>
+
+        <h2>Haftung für Inhalte</h2>
+        <p>Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
+
+        <h2>Haftung für Links</h2>
+        <p>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+
+        <h2>Urheberrecht</h2>
+        <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+
+        <h2>Realisierung</h2>
+        <p>Demo-Umsetzung: Blacklyne. Ursprüngliches Konzept &amp; Grafik der bestehenden Seite: {site.realisation}.</p>
+      </div>
+    </div>
+  </section>
+</Layout>

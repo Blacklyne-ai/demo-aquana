@@ -1,0 +1,204 @@
+---
+import '../styles/global.css';
+// Fonts via eigene @font-face mit font-display:optional → kein Swap, kein CLS.
+// Latin-only woff2 von Fontsource, kritische Fonts preloaded (LCP).
+import jakarta from '@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url';
+import merri400 from '@fontsource/merriweather-sans/files/merriweather-sans-latin-400-normal.woff2?url';
+import merri500 from '@fontsource/merriweather-sans/files/merriweather-sans-latin-500-normal.woff2?url';
+import merri700 from '@fontsource/merriweather-sans/files/merriweather-sans-latin-700-normal.woff2?url';
+
+const fontFace = `
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:optional;src:url(${jakarta}) format('woff2');}
+@font-face{font-family:'Merriweather Sans';font-style:normal;font-weight:400;font-display:optional;src:url(${merri400}) format('woff2');}
+@font-face{font-family:'Merriweather Sans';font-style:normal;font-weight:500;font-display:optional;src:url(${merri500}) format('woff2');}
+@font-face{font-family:'Merriweather Sans';font-style:normal;font-weight:700;font-display:optional;src:url(${merri700}) format('woff2');}
+`;
+import { ClientRouter } from 'astro:transitions';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FloatingCTA from '../components/FloatingCTA.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title: string;
+  description?: string;
+  current?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  schema?: object | null;
+}
+
+const {
+  title,
+  description = site.description,
+  current = '',
+  ogImage = '/images/artikel/fzb/wellenbecken.jpg',
+  noindex = false,
+  schema = null,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, site.url).toString();
+const ogImageUrl = new URL(ogImage, site.url).toString();
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <link rel="preload" as="font" type="font/woff2" href={jakarta} crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={merri400} crossorigin />
+    <style set:html={fontFace}></style>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="canonical" href={canonical} />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex
+      ? <meta name="robots" content="noindex, follow" />
+      : <meta name="robots" content="index, follow" />}
+    <meta name="theme-color" content="#061B36" />
+    <meta name="author" content={site.name} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <SchemaOrg schema={schema} />
+    <ClientRouter />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Zum Inhalt springen</a>
+    <Header current={current} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <FloatingCTA />
+    <CookieBanner />
+
+    <script>
+      // Globale Interaktions-Engine - initial UND nach jeder View Transition.
+      const reduce = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function initPage() {
+        // ── Scroll-Reveal ──
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+            });
+          },
+          { rootMargin: '0px 0px -50px 0px', threshold: 0.05 }
+        );
+        document.querySelectorAll('.fade-in, .timeline').forEach((el) => io.observe(el));
+
+        // ── Zähler (de-DE Formatierung) ──
+        const fmt = (n: number) => n.toLocaleString('de-DE');
+        const animateCount = (el: HTMLElement) => {
+          const target = parseInt(el.dataset.count || '0', 10);
+          if (reduce() || !target) { el.textContent = fmt(target) + (el.dataset.suffix || ''); return; }
+          const dur = 1800;
+          const startTime = performance.now();
+          const tick = (now: number) => {
+            const p = Math.min((now - startTime) / dur, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = fmt(Math.round(eased * target)) + (el.dataset.suffix || '');
+            if (p < 1) requestAnimationFrame(tick);
+            else el.textContent = fmt(target) + (el.dataset.suffix || '');
+          };
+          requestAnimationFrame(tick);
+        };
+        const countIO = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) { animateCount(e.target as HTMLElement); countIO.unobserve(e.target); }
+            });
+          },
+          { threshold: 0.4 }
+        );
+        document.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => countIO.observe(el));
+
+        // ── Maus-Glow auf Cards/Tiles (setzt --mx/--my) ──
+        if (!reduce()) {
+          document.querySelectorAll<HTMLElement>('.card-dark, .card-feature, .tile, .card-accent').forEach((card) => {
+            card.addEventListener('pointermove', (ev) => {
+              const r = card.getBoundingClientRect();
+              card.style.setProperty('--mx', ((ev.clientX - r.left) / r.width) * 100 + '%');
+              card.style.setProperty('--my', ((ev.clientY - r.top) / r.height) * 100 + '%');
+            });
+          });
+
+          // ── 3D-Tilt ──
+          document.querySelectorAll<HTMLElement>('[data-tilt]').forEach((el) => {
+            const max = parseFloat(el.dataset.tilt || '5');
+            el.addEventListener('pointermove', (ev) => {
+              const r = el.getBoundingClientRect();
+              const px = (ev.clientX - r.left) / r.width - 0.5;
+              const py = (ev.clientY - r.top) / r.height - 0.5;
+              el.style.setProperty('--ry', (px * max).toFixed(2) + 'deg');
+              el.style.setProperty('--rx', (-py * max).toFixed(2) + 'deg');
+            });
+            el.addEventListener('pointerleave', () => {
+              el.style.setProperty('--rx', '0deg');
+              el.style.setProperty('--ry', '0deg');
+            });
+          });
+        }
+      }
+
+      // ── Parallax (window-Listener, einmalig) ──
+      function parallaxFrame() {
+        document.querySelectorAll<HTMLElement>('[data-parallax]').forEach((el) => {
+          const f = parseFloat(el.dataset.parallax || '0.12');
+          const r = el.getBoundingClientRect();
+          const mid = r.top + r.height / 2 - window.innerHeight / 2;
+          el.style.transform = `translateY(${(-mid * f).toFixed(1)}px)`;
+        });
+      }
+      const w = window as any;
+      if (!w.__aqGlobal) {
+        w.__aqGlobal = true;
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+          if (ticking || reduce()) return;
+          ticking = true;
+          requestAnimationFrame(() => { parallaxFrame(); ticking = false; });
+        }, { passive: true });
+      }
+
+      document.addEventListener('astro:page-load', () => {
+        initPage();
+        if (!reduce()) parallaxFrame();
+      });
+    </script>
+
+    <style is:global>
+      .skip-link {
+        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+      }
+      .skip-link:focus {
+        position: fixed; top: 1rem; left: 1rem; width: auto; height: auto; clip: auto;
+        padding: 0.75rem 1.25rem; background: rgb(var(--rgb-tide)); color: #fff; border-radius: 999px; z-index: 100;
+        font-weight: 700;
+      }
+    </style>
+  </body>
+</html>

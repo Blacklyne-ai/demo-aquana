@@ -1,0 +1,98 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import CtaBand from '../../../components/CtaBand.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+import Icon from '../../../components/Icon.astro';
+import { site, telLink } from '../../../data/site';
+import { courses } from '../../../data/courses';
+
+export function getStaticPaths() {
+  return courses.map((course) => ({ params: { slug: course.slug }, props: { course } }));
+}
+const { course } = Astro.props;
+const others = courses.filter((c) => c.slug !== course.slug);
+const facts = [
+  { label: 'Zielgruppe', value: course.audience },
+  { label: 'Umfang', value: course.scope },
+  { label: 'Gruppe', value: course.groupSize },
+  { label: 'Preis', value: course.price },
+  { label: 'Tage', value: course.days },
+];
+---
+<Layout title={`${course.title} - Schwimmkurse AQUANA Würselen`} description={course.lead} current="/freizeitbad">
+  <PageHero
+    eyebrow={`Schwimmkurs · Stufe ${course.step}`}
+    title={course.title}
+    subtitle={course.lead}
+    crumb={course.navLabel}
+    crumbParent="Schwimmkurse"
+    crumbParentHref="/freizeitbad/schwimmkurse"
+    image={course.image}
+    imageAlt={course.title}
+    ghost={`0${course.step.replace(/^0/, '')}`}
+    tint="bad"
+    primary={{ href: `mailto:${site.emailCourses}?subject=${encodeURIComponent('Anmeldung ' + course.title)}`, label: 'Kurs anfragen' }}
+    secondary={{ href: '/freizeitbad/schwimmkurse', label: 'Alle Schwimmkurse' }}
+  />
+
+  <!-- Facts -->
+  <section class="section-paper pb-4 tint-bad">
+    <div class="container-mk">
+      <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 -mt-4">
+        {facts.map((f) => (
+          <div class="rounded-2xl border border-line bg-white p-5 fade-in">
+            <div class="text-[0.72rem] font-mono uppercase tracking-wider text-muted-light">{f.label}</div>
+            <div class="font-display font-bold text-ink text-[0.98rem] mt-1 leading-tight">{f.value}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Ziele -->
+  <section class="section-paper py-16 md:py-20 tint-bad">
+    <div class="container-mk">
+      <div class="grid lg:grid-cols-12 gap-10 items-start">
+        <div class="lg:col-span-7">
+          <h2 class="heading-md text-ink">Ziel des Kurses</h2>
+          <ul class="mt-6 space-y-3">
+            {course.goals.map((g) => (
+              <li class="flex items-start gap-3 text-ink fade-in"><span class="step-badge !w-8 !h-8 !text-sm !rounded-lg flex-shrink-0"><Icon name="Check" size={16} strokeWidth={2.6} /></span><span class="pt-1 text-[0.98rem]">{g}</span></li>
+            ))}
+          </ul>
+        </div>
+        <div class="lg:col-span-5">
+          <div class="card-feature card-accent fade-in">
+            <span class="accent-tile mb-4"><Icon name="GraduationCap" size={24} strokeWidth={1.9} /></span>
+            <h3 class="font-display font-extrabold text-ink text-lg">Jetzt anmelden</h3>
+            <p class="text-muted text-[0.92rem] leading-relaxed mt-2 text-pretty">Plätze sind begrenzt - melden Sie sich am besten direkt bei uns.</p>
+            <div class="flex flex-col gap-2.5 mt-5">
+              <a href={`mailto:${site.emailCourses}?subject=${encodeURIComponent('Anmeldung ' + course.title)}`} class="btn btn-tide btn-block"><Icon name="Mail" size={15} strokeWidth={2.2} /> {site.emailCourses}</a>
+              <a href={telLink} class="btn btn-outline btn-block"><Icon name="Phone" size={15} strokeWidth={2.2} /> {site.phoneDisplay}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Andere Kurse -->
+  <section class="section-stone py-16 md:py-20 tint-bad">
+    <div class="container-mk">
+      <SectionHeading eyebrow="Weitere Stufen" title="Andere <em>Schwimmkurse.</em>" />
+      <div class="grid sm:grid-cols-3 gap-5 mt-10">
+        {others.map((c) => (
+          <a href={`/freizeitbad/schwimmkurse/${c.slug}`} class="card group fade-in flex flex-col">
+            <span class="step-badge mb-4">{c.step}</span>
+            <h3 class="font-display font-bold text-ink text-[1.05rem] group-hover:text-accent transition-colors">{c.navLabel}</h3>
+            <p class="text-[0.82rem] text-muted mt-1">{c.audience}</p>
+            <span class="font-display font-extrabold text-ink mt-4 pt-4 border-t border-line">{c.price.split(' ')[0]} €</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

@@ -1,0 +1,28 @@
+---
+// Welt-Foto-Card (AMF-Pattern): Foto-BG + Tag-Badge + Welt-Glow + Pfeil-Link.
+import Icon from './Icon.astro';
+import type { World } from '../data/worlds';
+interface Props { world: World; large?: boolean }
+const { world, large = false } = Astro.props;
+---
+<a
+  href={world.slug}
+  class={`world-card tint-${world.tint} fade-in group ${large ? 'min-h-[26rem]' : ''}`}
+  aria-label={`${world.name} entdecken`}
+>
+  <img src={world.image} alt={world.imageAlt} loading="lazy" width="600" height="400" />
+  <div class="p-6 md:p-7">
+    <span class="world-badge mb-auto">
+      <Icon name={world.icon} size={14} strokeWidth={2.3} />
+      {world.tagBadge}
+    </span>
+    <div class="mt-5">
+      <h3 class="font-display font-extrabold text-white text-2xl md:text-[1.7rem] leading-tight tracking-tight">{world.name}</h3>
+      <p class="text-white/80 text-[0.95rem] leading-relaxed mt-2.5 max-w-sm text-pretty">{world.blurb}</p>
+      <span class="inline-flex items-center gap-2 mt-5 font-display font-bold text-white text-[0.95rem]">
+        <span style="color: rgb(var(--rgb-accent))">Mehr erfahren</span>
+        <Icon name="ArrowRight" size={16} strokeWidth={2.5} class="transition-transform duration-300 group-hover:translate-x-1.5" />
+      </span>
+    </div>
+  </div>
+</a>

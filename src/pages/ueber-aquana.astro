@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import StatsBand from '../components/StatsBand.astro';
+import WorldCard from '../components/WorldCard.astro';
+import Icon from '../components/Icon.astro';
+import { wissenSieSchon, whyCards } from '../data/trust';
+import { worlds } from '../data/worlds';
+---
+<Layout title="Über AQUANA - Euregio Freizeitbad Würselen" description="Seit 1998 bereichert das AQUANA die Euregio mit 1.774 m² Wasserfläche, vier Welten und nachhaltiger Technik. Lernen Sie das Euregio Freizeitbad Würselen kennen." current="/ueber-aquana">
+  <PageHero
+    eyebrow="Über AQUANA"
+    title="Seit 1998 das <em>Freizeitbad der Euregio.</em>"
+    subtitle="Mitten in Würselen, nur 500 Meter vom Stadtzentrum, mit 1.774 m² Wasserfläche und vier Welten unter einem Dach - für Gäste aus Deutschland, den Niederlanden und Belgien."
+    crumb="Über AQUANA"
+    tint="tide"
+    primary={{ href: '/preise-zeiten', label: 'Preise & Zeiten' }}
+  />
+
+  <section class="section-paper py-8">
+    <div class="container-mk">
+      <div class="rounded-2xl border border-line bg-white shadow-soft overflow-hidden"><StatsBand /></div>
+    </div>
+  </section>
+
+  <!-- Wissen Sie schon -->
+  <section class="section-paper py-16 md:py-24">
+    <div class="container-mk">
+      <SectionHeading eyebrow="Wissen Sie schon …" title="Sieben Dinge über <em>das AQUANA.</em>" />
+      <div class="grid md:grid-cols-2 gap-x-10 gap-y-1 mt-10 max-w-5xl">
+        {wissenSieSchon.map((f, i) => (
+          <div class="flex items-start gap-4 py-4 border-b border-line fade-in">
+            <span class="font-display font-extrabold text-tide/30 text-2xl leading-none w-8 flex-shrink-0">{String(i + 1).padStart(2, '0')}</span>
+            <p class="text-ink/85 text-[0.95rem] leading-relaxed text-pretty">… {f}</p>
+          </div>
+        ))}
+      </div>
+      <p class="font-display font-extrabold text-ink text-2xl mt-10">Spaß kennt keine Grenzen!</p>
+    </div>
+  </section>
+
+  <!-- Warum AQUANA -->
+  <section class="section-stone py-16 md:py-20">
+    <div class="container-mk">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {whyCards.map((c) => (
+          <div class="tile fade-in">
+            <span class="tile-icon tile-icon-outline"><Icon name={c.icon} size={22} strokeWidth={1.9} /></span>
+            <h3 class="font-display font-bold text-ink text-lg mt-1">{c.title}</h3>
+            <p class="text-muted text-[0.92rem] leading-relaxed text-pretty">{c.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Vier Welten -->
+  <section class="section-ink py-20 md:py-28 relative overflow-hidden">
+    <div class="absolute inset-0 grid-overlay grid-overlay-fade opacity-50" aria-hidden="true"></div>
+    <div class="container-mk relative">
+      <SectionHeading eyebrow="Entdecken" title="Unsere <em>vier Welten.</em>" light={true} />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
+        {worlds.map((w) => <WorldCard world={w} />)}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

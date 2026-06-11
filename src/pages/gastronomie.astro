@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Icon from '../components/Icon.astro';
+import { ticketLink } from '../data/site';
+
+const offers = [
+  { icon: 'Utensils', title: 'Herzhaft & süß', text: 'Von der herzhaften Stärkung bis zum süßen Genuss - es schmeckt im AQUANA.' },
+  { icon: 'ConciergeBell', title: '140 Sitzplätze', text: 'Unsere großzügige Sauna-Gastronomie bietet 140 Sitzplätze - so haben Sie stets Ihren eigenen Platz.' },
+  { icon: 'Coffee', title: 'Snacks & Getränke', text: 'Leckere Mahlzeiten, Snacks und Getränke für zwischendurch und danach.' },
+  { icon: 'HandPlatter', title: 'An allen Tischen', text: 'Im Freizeitbad können Sie an allen Tischen Essen und Getränke aus unserem Angebot genießen.' },
+];
+---
+<Layout title="Gastronomie - AQUANA Würselen" description="Sauna-Gastronomie mit 140 Sitzplätzen - herzhaft oder süß, Mahlzeiten, Snacks und Getränke im AQUANA Freizeitbad Würselen." current="/gastronomie">
+  <PageHero
+    eyebrow="Welt 04 · Gastronomie"
+    title="Entspannen und <em>genießen.</em>"
+    subtitle="Ob herzhaft oder süß: Unsere Sauna-Gastronomie mit 140 Sitzplätzen sorgt für die Stärkung zwischendurch und danach - und im Freizeitbad genießen Sie an allen Tischen."
+    crumb="Gastronomie"
+    image="/images/img/teaser_gastronomie.png"
+    imageAlt="Gastronomie im AQUANA"
+    ghost="GASTRO"
+    tint="gastro"
+    primary={{ href: ticketLink, label: 'Tickets online kaufen', external: true }}
+  />
+
+  <section class="section-paper py-16 md:py-24 tint-gastro">
+    <div class="container-mk">
+      <SectionHeading eyebrow="Essen im AQUANA" title="Ob herzhaft oder süß - <em>es schmeckt.</em>" />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
+        {offers.map((o) => (
+          <div class="tile fade-in">
+            <span class="accent-tile"><Icon name={o.icon} size={24} strokeWidth={1.9} /></span>
+            <h3 class="font-display font-bold text-ink text-lg mt-1">{o.title}</h3>
+            <p class="text-muted text-[0.92rem] leading-relaxed text-pretty">{o.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-stone py-16 md:py-20 tint-gastro">
+    <div class="container-mk max-w-3xl">
+      <div class="card-feature card-accent fade-in">
+        <span class="accent-tile mb-4"><Icon name="Info" size={24} strokeWidth={1.9} /></span>
+        <h2 class="heading-md text-ink">Mitgebrachte Speisen</h2>
+        <p class="text-muted leading-relaxed mt-4 text-pretty">
+          Wir bitten Sie um Verständnis, dass mitgebrachte Speisen und Getränke im AQUANA nicht verzehrt werden dürfen. Die Einnahmen aus der Gastronomie sind ein unverzichtbarer Bestandteil unserer Preiskalkulation - bei deren Wegfall müssten die Eintrittspreise entsprechend angehoben werden, da das Betreiben einer so kostenintensiven Freizeiteinrichtung ansonsten unmöglich wäre.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

@@ -1,0 +1,90 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import Icon from '../../components/Icon.astro';
+import { ticketLink } from '../../data/site';
+import { attractions } from '../../data/freizeitbad';
+import { courses } from '../../data/courses';
+
+const topics = [
+  { href: '/freizeitbad/attraktionen', icon: 'WavesLadder', label: 'Attraktionen & Rutschen', text: 'Wellenbecken, Black Hole, Master Blaster, Piratenschiff und mehr.' },
+  { href: '/freizeitbad/schulklassen-gruppen', icon: 'Users', label: 'Schulklassen & Gruppen', text: 'Gruppen-Sonderpreise ab 10 Personen, auf Wunsch mit Sonderöffnung.' },
+  { href: '/freizeitbad/kindergeburtstag', icon: 'Gift', label: 'Kindergeburtstag', text: 'Geburtstagskind frei, Geburtstagsmenü und Aktionsprogramm.' },
+  { href: '/freizeitbad/schwimmkurse', icon: 'GraduationCap', label: 'Schwimmkurse', text: 'In vier Stufen sicher schwimmen lernen - für Kinder und Erwachsene.' },
+  { href: '/freizeitbad/bahnenschwimmen', icon: 'Activity', label: 'Bahnenschwimmen', text: 'Bahnen ziehen im 25-m-Sportbecken.' },
+  { href: '/freizeitbad/beco-shop', icon: 'ShoppingBag', label: 'Beco-Shop', text: 'Schwimmbedarf, Spielzeug und Sicherheit für Nichtschwimmer.' },
+];
+---
+<Layout title="Freizeitbad - AQUANA Würselen" description="Rutschen, Wellenbecken, Piratenschiff, Schwimmkurse und Kindergeburtstage im AQUANA Freizeitbad Würselen." current="/freizeitbad">
+  <PageHero
+    eyebrow="Welt 01 · Freizeitbad"
+    title="Rutschen, Wellen und ein <em>ganzer Tag Spaß.</em>"
+    subtitle="Vom Wellenbecken übers Piratenschiff bis zur 75-Meter-Black-Hole: Im Freizeitbad wird jeder Besuch zum Erlebnis - für die ganz Kleinen und alle Junggebliebenen."
+    crumb="Freizeitbad"
+    image="/images/artikel/fzb/wellenbecken2.jpg"
+    imageAlt="Wellenbecken im AQUANA Freizeitbad"
+    ghost="BAD"
+    tint="bad"
+    primary={{ href: ticketLink, label: 'Tickets online kaufen', external: true }}
+    secondary={{ href: '/preise-zeiten', label: 'Preise & Zeiten' }}
+  />
+
+  <!-- Themen -->
+  <section class="section-paper py-16 md:py-24 tint-bad">
+    <div class="container-mk">
+      <SectionHeading eyebrow="Im Freizeitbad" title="Alles, was das <em>Wasser hergibt.</em>" />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
+        {topics.map((t) => (
+          <a href={t.href} class="tile group fade-in">
+            <span class="accent-tile"><Icon name={t.icon} size={24} strokeWidth={1.9} /></span>
+            <h3 class="font-display font-bold text-ink text-lg mt-1 group-hover:text-accent transition-colors">{t.label}</h3>
+            <p class="text-muted text-[0.92rem] leading-relaxed text-pretty flex-1">{t.text}</p>
+            <span class="inline-flex items-center gap-1.5 mt-3 font-display font-bold text-accent text-sm">Mehr <Icon name="ArrowRight" size={15} strokeWidth={2.5} class="transition-transform group-hover:translate-x-1" /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Attraktionen -->
+  <section class="section-ink py-20 md:py-28 relative overflow-hidden tint-bad">
+    <div class="absolute inset-0 grid-overlay grid-overlay-fade opacity-50" aria-hidden="true"></div>
+    <div class="glow-orb" style="width:480px;height:480px;top:-150px;right:-60px;background:rgb(var(--rgb-aqua));opacity:0.12;" aria-hidden="true"></div>
+    <div class="container-mk relative">
+      <SectionHeading eyebrow="Action pur" title="Unsere <em>Attraktionen.</em>" light={true} ctaHref="/freizeitbad/attraktionen" ctaLabel="Alle Attraktionen" />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
+        {attractions.slice(0, 8).map((a) => (
+          <div class="world-card tint-bad fade-in" style="min-height: 17rem;">
+            <img src={a.image} alt={a.name} loading="lazy" width="600" height="400" />
+            <div class="p-5">
+              {a.meta && <span class="world-badge mb-auto !text-[0.62rem]">{a.meta}</span>}
+              <h3 class="font-display font-extrabold text-white text-lg leading-tight mt-3">{a.name}</h3>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Schwimmkurse Teaser -->
+  <section class="section-paper py-20 md:py-28 tint-bad">
+    <div class="container-mk">
+      <SectionHeading eyebrow="Schwimmen lernen" title="In vier Stufen zum <em>sicheren Schwimmer.</em>" ctaHref="/freizeitbad/schwimmkurse" ctaLabel="Zu den Schwimmkursen" />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
+        {courses.map((c) => (
+          <a href={`/freizeitbad/schwimmkurse/${c.slug}`} class="card group fade-in flex flex-col">
+            <span class="step-badge mb-4">{c.step}</span>
+            <h3 class="font-display font-extrabold text-ink text-lg leading-tight group-hover:text-accent transition-colors">{c.navLabel}</h3>
+            <p class="text-[0.82rem] font-semibold text-accent mt-1">{c.audience}</p>
+            <p class="text-muted text-[0.88rem] leading-relaxed mt-3 flex-1 text-pretty">{c.lead}</p>
+            <span class="font-display font-extrabold text-ink mt-4 pt-4 border-t border-line">{c.price.split(' ')[0]} €</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

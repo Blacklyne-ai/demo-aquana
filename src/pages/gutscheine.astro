@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { mailFor } from '../data/site';
+
+const values = ['5 €', '10 €', '15 €', '20 €', '25 €', '30 €', '40 €', '50 €', '60 €', '70 €', '80 €', '90 €', '100 €', '120 €', '150 €', '200 €'];
+const steps = [
+  { icon: 'Gift', title: 'Wert wählen', text: 'Den Gutscheinwert legen Sie selbst fest - von 5 € bis 200 €.' },
+  { icon: 'Mail', title: 'Versandweg', text: 'Per E-Mail oder per Post (zzgl. 1,80 € Versandpauschale).' },
+  { icon: 'HandCoins', title: 'Bezahlung', text: 'Bequem per Vorkasse/Überweisung oder PayPal.' },
+];
+---
+<Layout title="Gutscheine - AQUANA Würselen" description="Verschenken Sie AQUANA-Freude: Gutscheine für Freizeitbad, Sauna, Sport und Gastronomie - den Wert legen Sie selbst fest, von 5 € bis 200 €." current="/gutscheine">
+  <PageHero
+    eyebrow="Das perfekte Geschenk"
+    title="Verschenken Sie <em>AQUANA-Freude.</em>"
+    subtitle="Stellen Sie sich vor, wie Sie auf einem Reifen die Rutsche heruntergleiten, das Piratenschiff erobern, Bahnen im Sportbecken schwimmen oder in der Saunalandschaft die Seele baumeln lassen - und schenken Sie diese Vorfreude weiter."
+    crumb="Gutscheine"
+    image="/images/artikel/fzb/masterblaster1.jpg"
+    imageAlt="Gutscheine im AQUANA"
+    tint="tide"
+    primary={{ href: mailFor('Gutschein-Bestellung AQUANA'), label: 'Gutschein anfragen' }}
+  />
+
+  <section class="section-paper py-16 md:py-24">
+    <div class="container-mk">
+      <div class="grid sm:grid-cols-3 gap-4">
+        {steps.map((s, i) => (
+          <div class="card-feature tint-tide card-accent fade-in">
+            <span class="step-badge mb-4">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="font-display font-bold text-ink text-lg flex items-center gap-2"><Icon name={s.icon} size={18} class="text-accent" /> {s.title}</h3>
+            <p class="text-muted text-[0.92rem] leading-relaxed mt-2 text-pretty">{s.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 rounded-2xl bg-white border border-line p-7 fade-in">
+        <h3 class="font-display font-extrabold text-ink text-lg">Beliebte Gutscheinwerte</h3>
+        <div class="flex flex-wrap gap-2 mt-5">
+          {values.map((v) => <span class="tag">{v}</span>)}
+        </div>
+        <a href={mailFor('Gutschein-Bestellung AQUANA')} class="btn btn-tide mt-7"><Icon name="Gift" size={15} strokeWidth={2.2} /> Gutschein per E-Mail bestellen</a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

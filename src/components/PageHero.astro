@@ -1,0 +1,81 @@
+---
+// Subpage-Hero - Light/Editorial (Paper), items-center, Ghost-Watermark
+// mit Parallax, optionales Bild im Tilt-Frame.
+import Icon from './Icon.astro';
+interface Props {
+  eyebrow?: string;
+  title: string; // darf <em>…</em> enthalten (Akzentwort in Brand-Farbe)
+  subtitle?: string;
+  crumb?: string;
+  crumbHref?: string;
+  crumbParent?: string;
+  crumbParentHref?: string;
+  image?: string;
+  imageAlt?: string;
+  ghost?: string;
+  tint?: string; // bad | sauna | sport | gastro | tide
+  primary?: { href: string; label: string; external?: boolean };
+  secondary?: { href: string; label: string };
+}
+const {
+  eyebrow, title, subtitle, crumb, crumbHref,
+  crumbParent, crumbParentHref, image, imageAlt = '',
+  ghost = 'AQUANA', tint = 'tide', primary, secondary,
+} = Astro.props;
+---
+<section class={`section-paper relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-20 tint-${tint}`}>
+  <span class="ghost-mark -right-12 -top-16" data-text={ghost} data-parallax="0.08" aria-hidden="true"></span>
+
+  <div class="container-mk relative z-10">
+    <nav class="flex items-center flex-wrap gap-2 text-[0.78rem] text-muted-light mb-7 fade-in" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-ink transition">Start</a>
+      <Icon name="ChevronRight" size={13} strokeWidth={2.4} />
+      {crumbParent && crumbParentHref && (
+        <Fragment>
+          <a href={crumbParentHref} class="hover:text-ink transition">{crumbParent}</a>
+          <Icon name="ChevronRight" size={13} strokeWidth={2.4} />
+        </Fragment>
+      )}
+      <span class="text-ink/70 font-medium">{crumb ?? 'Seite'}</span>
+    </nav>
+
+    <div class={`grid ${image ? 'lg:grid-cols-12 gap-10 lg:gap-14 items-center' : ''}`}>
+      <div class={image ? 'lg:col-span-7' : 'max-w-3xl'}>
+        {eyebrow && (
+          <span class="eyebrow mb-5 fade-in inline-flex items-center gap-3" style="color: rgb(var(--rgb-accent));">
+            <span class="led !w-1.5 !h-1.5" aria-hidden="true" style="background: rgb(var(--rgb-accent)); box-shadow: 0 0 0 3px rgb(var(--rgb-accent) / 0.18), 0 0 8px rgb(var(--rgb-accent) / 0.7);"></span>
+            {eyebrow}
+          </span>
+        )}
+        <h1 class="heading-xl text-balance section-title fade-in stagger-1" set:html={title} />
+        {subtitle && <p class="text-lg md:text-xl text-muted leading-relaxed max-w-2xl mt-6 text-pretty fade-in stagger-2">{subtitle}</p>}
+        {(primary || secondary) && (
+          <div class="flex flex-col sm:flex-row gap-3 mt-9 fade-in stagger-3">
+            {primary && (
+              <a href={primary.href} class="btn btn-tide btn-lg" {...(primary.external ? { target: '_blank', rel: 'noopener' } : {})}>
+                {primary.label}
+                <Icon name={primary.external ? 'ArrowUpRight' : 'ArrowRight'} size={16} strokeWidth={2.5} />
+              </a>
+            )}
+            {secondary && <a href={secondary.href} class="btn btn-outline btn-lg">{secondary.label}</a>}
+          </div>
+        )}
+      </div>
+      {image && (
+        <div class="lg:col-span-5 fade-in stagger-2">
+          <div class="photo-frame" data-tilt="3">
+            <img
+              src={image}
+              alt={imageAlt}
+              width="800"
+              height="600"
+              class="w-full aspect-[4/3] object-cover"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</section>

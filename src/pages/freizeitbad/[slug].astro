@@ -1,0 +1,15 @@
+---
+import ContentPageLayout from '../../components/ContentPageLayout.astro';
+import { freizeitbadPages } from '../../data/freizeitbad';
+import { worldBySlug } from '../../data/worlds';
+import { nav } from '../../data/site';
+
+export function getStaticPaths() {
+  return freizeitbadPages.map((page) => ({ params: { slug: page.slug }, props: { page } }));
+}
+const { page } = Astro.props;
+const world = worldBySlug('/freizeitbad');
+const group = nav.find((g) => g.href === '/freizeitbad');
+const siblings = (group?.children ?? []).filter((c) => c.href !== `/freizeitbad/${page.slug}`);
+---
+<ContentPageLayout page={page} world={world} siblings={siblings} />

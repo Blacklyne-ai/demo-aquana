@@ -1,0 +1,17 @@
+---
+// 4-Stat-Band (AMF-Pattern). Zahlen animieren (data-count), Welten-Wert statisch.
+import { stats } from '../data/trust';
+interface Props { light?: boolean }
+const { light = false } = Astro.props;
+---
+<div class={`grid grid-cols-2 lg:grid-cols-4 gap-px rounded-2xl overflow-hidden ${light ? 'bg-white/10' : 'bg-line'}`}>
+  {stats.map((s) => (
+    <div class={`flex flex-col gap-1 p-6 md:p-7 ${light ? 'bg-ink-deep' : 'bg-paper'} fade-in`}>
+      <div class={`big-number ${light ? 'text-white' : 'text-ink'}`}>
+        <span class="text-accent" data-count={s.value} data-suffix={s.suffix ?? ''}>0{s.suffix ?? ''}</span>
+      </div>
+      <div class={`font-display font-bold text-[0.95rem] mt-1 ${light ? 'text-white' : 'text-ink'}`}>{s.label}</div>
+      {s.sub && <div class={`text-sm ${light ? 'text-white/55' : 'text-muted'}`}>{s.sub}</div>}
+    </div>
+  ))}
+</div>

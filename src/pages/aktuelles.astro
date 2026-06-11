@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import NewsCard from '../components/NewsCard.astro';
+import { news } from '../data/news';
+---
+<Layout title="Aktuelles - AQUANA Würselen" description="Neuigkeiten aus dem AQUANA: Aktionen, neue Kurstermine, Events und Wissenswertes rund um das Euregio Freizeitbad Würselen." current="/aktuelles">
+  <PageHero
+    eyebrow="Aktuelles aus dem AQUANA"
+    title="Was bei uns <em>gerade los ist.</em>"
+    subtitle="Aktionen, neue Kurstermine, Events und Wissenswertes - hier halten wir Sie auf dem Laufenden."
+    crumb="Aktuelles"
+    tint="tide"
+  />
+
+  <section class="section-paper py-16 md:py-24">
+    <div class="container-mk">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {news.map((n) => <NewsCard item={n} />)}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

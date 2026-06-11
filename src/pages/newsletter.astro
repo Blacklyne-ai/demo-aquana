@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+
+const perks = [
+  { icon: 'CalendarDays', title: 'Aktionen & Termine', text: 'Monatskalender, Ferienprogramm und Events frühzeitig erfahren.' },
+  { icon: 'Flame', title: 'Lange Saunanächte', text: 'Mottoabende und Wellnesssamstage nie verpassen.' },
+  { icon: 'Bike', title: 'Neue Kurse', text: 'Aquacycling, Schwimmkurse und mehr - sobald Plätze frei werden.' },
+];
+---
+<Layout title="Newsletter - AQUANA Würselen" description="Der AQUANA-Newsletter: Aktionen, Events, lange Saunanächte und neue Kurstermine - kein Highlight verpassen." current="/newsletter">
+  <PageHero
+    eyebrow="Immer informiert"
+    title="Der AQUANA-<em>Newsletter.</em>"
+    subtitle="Aktionen, Events, lange Saunanächte und neue Kurstermine - direkt in Ihr Postfach. Jederzeit mit einem Klick abbestellbar."
+    crumb="Newsletter"
+    tint="tide"
+  />
+
+  <section class="section-paper py-16 md:py-24">
+    <div class="container-mk grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2 class="heading-md text-ink">Das erwartet Sie</h2>
+        <div class="mt-6 space-y-3">
+          {perks.map((p) => (
+            <div class="flex items-start gap-4 fade-in">
+              <span class="accent-tile tint-tide flex-shrink-0" style="width:44px;height:44px;"><Icon name={p.icon} size={20} strokeWidth={2} /></span>
+              <div>
+                <div class="font-display font-bold text-ink">{p.title}</div>
+                <div class="text-muted text-[0.92rem]">{p.text}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="card-dark tint-aqua fade-in">
+        <span class="accent-tile mb-4" style="background: rgb(var(--rgb-aqua) / 0.15); color: rgb(var(--rgb-aqua-bright)); border-color: rgb(var(--rgb-aqua) / 0.3);"><Icon name="Mail" size={24} strokeWidth={1.9} /></span>
+        <h3 class="font-display font-extrabold text-white text-xl">Jetzt anmelden</h3>
+        <p class="text-white/65 text-[0.95rem] leading-relaxed mt-2 text-pretty">Geben Sie Ihre E-Mail-Adresse ein - der Rest geht über Ihr Mailprogramm. Kein Tracking, kein Spam.</p>
+        <form id="nl-form" class="flex flex-col sm:flex-row gap-2.5 mt-5">
+          <input type="email" required placeholder="Ihre E-Mail-Adresse" aria-label="E-Mail-Adresse" class="flex-1 rounded-pill px-5 py-3 text-[0.92rem] text-white bg-white/10 border border-white/20 placeholder:text-white/40 focus:outline-none focus:border-aqua" />
+          <button type="submit" class="btn btn-tide">Anmelden</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const form = document.getElementById('nl-form') as HTMLFormElement | null;
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = (form.querySelector('input[type=email]') as HTMLInputElement)?.value || '';
+      const subject = encodeURIComponent('Newsletter-Anmeldung AQUANA');
+      const body = encodeURIComponent(`Ich möchte den AQUANA-Newsletter abonnieren.\n\nE-Mail: ${email}`);
+      window.location.href = `mailto:info@aquana.de?subject=${subject}&body=${body}`;
+    });
+  });
+</script>

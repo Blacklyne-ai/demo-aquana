@@ -1,0 +1,39 @@
+---
+// Zentrale Lucide-Icon-Map (@lucide/astro, named imports).
+// Data-Files referenzieren Icons per Name; alles Verwendete steht hier.
+// Brand-Icons (Instagram/Facebook/YouTube) gibt es in Lucide NICHT →
+// InstagramIcon.astro / inline SVG im Footer.
+import {
+  WavesLadder, Flame, Activity, UtensilsCrossed,
+  Anchor, Users, Sailboat, Mountain, Bike, Volleyball, Droplets, Waypoints,
+  Award, Accessibility, Leaf, GraduationCap, Baby, ShieldCheck, Sparkles,
+  Ticket, Gift, Mail, Phone, MessageCircle, MapPin, Navigation, Bus, Clock,
+  CalendarDays, CalendarCheck, Star, Check, Info, ThermometerSun, Snowflake, Sun,
+  ArrowRight, ArrowUpRight, ChevronDown, ChevronRight, ExternalLink, Download,
+  Heart, Euro, Soup, Coffee, X, Menu, Briefcase, Quote,
+  ShoppingBag, Moon, FileText, ScrollText, Building2, ConciergeBell, Map,
+  HandCoins, Utensils, Salad, Croissant, HandPlatter, Bath, HeartHandshake,
+} from '@lucide/astro';
+
+const MAP: Record<string, any> = {
+  WavesLadder, Flame, Activity, UtensilsCrossed,
+  Anchor, Users, Sailboat, Mountain, Bike, Volleyball, Droplets, Waypoints,
+  Award, Accessibility, Leaf, GraduationCap, Baby, ShieldCheck, Sparkles,
+  Ticket, Gift, Mail, Phone, MessageCircle, MapPin, Navigation, Bus, Clock,
+  CalendarDays, CalendarCheck, Star, Check, Info, ThermometerSun, Snowflake, Sun,
+  ArrowRight, ArrowUpRight, ChevronDown, ChevronRight, ExternalLink, Download,
+  Heart, Euro, Soup, Coffee, X, Menu, Briefcase, Quote,
+  ShoppingBag, Moon, FileText, ScrollText, Building2, ConciergeBell, Map,
+  HandCoins, Utensils, Salad, Croissant, HandPlatter, Bath, HeartHandshake,
+};
+
+interface Props {
+  name: string;
+  size?: number;
+  class?: string;
+  strokeWidth?: number;
+}
+const { name, size = 24, class: className = '', strokeWidth = 1.75 } = Astro.props;
+const Cmp = MAP[name] ?? Sparkles;
+---
+<Cmp size={size} class={className} stroke-width={strokeWidth} />

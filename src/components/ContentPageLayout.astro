@@ -1,0 +1,132 @@
+---
+// Renderer für ContentPage (Welten-Subpages). Hero + Facts-Strip +
+// variierende Sections + Cross-Links + CtaBand. Min. 4 distinkte Blöcke.
+import Layout from '../layouts/Layout.astro';
+import PageHero from './PageHero.astro';
+import CtaBand from './CtaBand.astro';
+import Icon from './Icon.astro';
+import { ticketLink } from '../data/site';
+import type { ContentPage, World } from '../data/worlds';
+
+interface Props {
+  page: ContentPage;
+  world?: World;
+  siblings?: { href: string; label: string }[];
+  tint?: string;
+}
+const { page, world, siblings = [], tint = world?.tint ?? 'tide' } = Astro.props;
+const title = `${page.title} - AQUANA Würselen`;
+const primary = page.ctaHref
+  ? { href: page.ctaHref, label: page.ctaLabel ?? 'Mehr erfahren', external: page.ctaHref.startsWith('http') }
+  : { href: ticketLink, label: 'Tickets online kaufen', external: true };
+---
+<Layout title={title} description={page.lead} current={world?.slug ?? ''}>
+  <PageHero
+    eyebrow={page.eyebrow}
+    title={page.title}
+    subtitle={page.lead}
+    crumb={page.navLabel}
+    crumbParent={world?.name}
+    crumbParentHref={world?.slug}
+    image={page.heroImage}
+    imageAlt={page.heroAlt}
+    ghost={world?.name?.toUpperCase() ?? 'AQUANA'}
+    tint={tint}
+    primary={primary}
+    secondary={world ? { href: world.slug, label: `Alle ${world.name}-Themen` } : undefined}
+  />
+
+  {page.facts && page.facts.length > 0 && (
+    <section class={`section-paper pb-4 tint-${tint}`}>
+      <div class="container-mk">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 -mt-4">
+          {page.facts.map((f) => (
+            <div class="rounded-2xl border border-line bg-white p-5 fade-in">
+              <div class="text-[0.72rem] font-mono uppercase tracking-wider text-muted-light">{f.label}</div>
+              <div class="font-display font-extrabold text-ink text-lg mt-1 leading-tight">{f.value}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {(page.sections ?? []).map((s, i) => (
+    <section class={`${i % 2 === 0 ? 'section-paper' : 'section-stone'} py-16 md:py-20 tint-${tint}`}>
+      <div class="container-mk">
+        {s.image ? (
+          <div class={`grid lg:grid-cols-12 gap-10 lg:gap-14 items-center ${i % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
+            <div class="lg:col-span-5 fade-in [direction:ltr]">
+              <div class="photo-frame" data-tilt="3">
+                <img src={s.image} alt={s.imageAlt ?? page.title} class="w-full aspect-[4/3] object-cover" width="700" height="525" loading="lazy" />
+              </div>
+            </div>
+            <div class="lg:col-span-7 [direction:ltr]">
+              {s.heading && <h2 class="heading-md text-ink fade-in">{s.heading}</h2>}
+              {s.body && s.body.split('\n\n').map((p) => <p class="text-muted leading-relaxed mt-4 text-pretty fade-in">{p}</p>)}
+              {s.bullets && (
+                <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2.5 mt-5">
+                  {s.bullets.map((b) => (
+                    <li class="flex items-start gap-2.5 text-[0.95rem] text-ink fade-in"><Icon name="Check" size={17} strokeWidth={2.4} class="mt-0.5 flex-shrink-0 text-accent" />{b}</li>
+                  ))}
+                </ul>
+              )}
+              {s.note && <p class="mt-5 rounded-xl bg-accent/5 border border-accent/15 px-4 py-3 text-[0.9rem] text-ink/80 flex items-start gap-2.5 fade-in"><Icon name="Info" size={17} strokeWidth={2.2} class="mt-0.5 flex-shrink-0 text-accent" />{s.note}</p>}
+            </div>
+          </div>
+        ) : (
+          <div class="max-w-5xl">
+            {s.heading && <h2 class="heading-md text-ink fade-in">{s.heading}</h2>}
+            {s.body && s.body.split('\n\n').map((p) => <p class="text-muted leading-relaxed mt-4 max-w-3xl text-pretty fade-in">{p}</p>)}
+
+            {s.cards && (
+              <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+                {s.cards.map((c) => (
+                  <div class="card-feature card-accent fade-in flex flex-col">
+                    {c.meta && <span class="world-badge-soft self-start mb-3">{c.meta}</span>}
+                    <h3 class="font-display font-bold text-ink text-[1.05rem] leading-snug">{c.title}</h3>
+                    {c.text && <p class="text-muted text-[0.9rem] leading-relaxed mt-2 text-pretty flex-1">{c.text}</p>}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {s.bullets && (
+              s.bullets.length > 12 ? (
+                <div class="flex flex-wrap gap-2 mt-8">
+                  {s.bullets.map((b) => <span class="tag fade-in">{b}</span>)}
+                </div>
+              ) : (
+                <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-3 mt-8 max-w-3xl">
+                  {s.bullets.map((b) => (
+                    <li class="flex items-start gap-2.5 text-[0.95rem] text-ink fade-in"><Icon name="Check" size={18} strokeWidth={2.4} class="mt-0.5 flex-shrink-0 text-accent" />{b}</li>
+                  ))}
+                </ul>
+              )
+            )}
+
+            {s.note && <p class="mt-6 rounded-xl bg-accent/5 border border-accent/15 px-4 py-3 text-[0.9rem] text-ink/80 flex items-start gap-2.5 max-w-3xl fade-in"><Icon name="Info" size={17} strokeWidth={2.2} class="mt-0.5 flex-shrink-0 text-accent" />{s.note}</p>}
+          </div>
+        )}
+      </div>
+    </section>
+  ))}
+
+  {siblings.length > 0 && world && (
+    <section class="section-paper py-16 md:py-20 border-t border-line">
+      <div class="container-mk">
+        <div class="flex items-end justify-between gap-4 mb-8">
+          <h2 class="heading-md text-ink">Mehr aus der Welt <span class="text-accent">{world.name}</span></h2>
+          <a href={world.slug} class="arrow-link hidden sm:inline-flex">Alle Themen</a>
+        </div>
+        <div class="flex flex-wrap gap-2.5">
+          {siblings.map((sib) => (
+            <a href={sib.href} class={`tag tint-${tint} hover:border-accent`}>{sib.label}<Icon name="ArrowRight" size={14} strokeWidth={2.3} /></a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CtaBand />
+</Layout>

@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Icon from '../components/Icon.astro';
+
+const floatRules = [
+  'Schwimmflügelpflicht im Wellenbecken',
+  'Schwimmflügelpflicht im Sportbecken - Ausnahme: im flachen Bereich dürfen Kinder ohne Schwimmflügel gemeinsam mit den Eltern üben',
+  'Schwimmflügelpflicht im Freibad',
+  'Schwimmflügelpflicht im Piratenschiff - Ausnahme: keine Pflicht, sofern Kinder in Begleitung einer Aufsichtsperson sind',
+];
+---
+<Layout title="Sicherheitshinweise - AQUANA Würselen" description="Sicherheit im AQUANA: Regeln zu Schwimmabzeichen, Begleitpersonen und Schwimmflügelpflicht. Damit alle unbeschwert Spaß haben." current="/sicherheitshinweise">
+  <PageHero
+    eyebrow="Sicher baden im AQUANA"
+    title="Damit alle <em>unbeschwert Spaß</em> haben."
+    subtitle="Ein paar klare Regeln zu Schwimmabzeichen, Begleitpersonen und Schwimmflügeln sorgen dafür, dass der Badetag für alle sicher bleibt."
+    crumb="Sicherheitshinweise"
+    image="/images/artikel/sicherheitshinweise/schwimmfluegel.jpg"
+    imageAlt="Sicherheit im AQUANA"
+    tint="tide"
+    primary={{ href: '/preise-zeiten', label: 'Preise & Zeiten' }}
+  />
+
+  <section class="section-paper py-16 md:py-24">
+    <div class="container-mk">
+      <div class="grid lg:grid-cols-2 gap-10">
+        <div>
+          <h2 class="heading-md text-ink">Schwimmabzeichen & Begleitung</h2>
+          <div class="mt-5 space-y-4 text-muted leading-relaxed text-pretty">
+            <p>Nichtschwimmern und Kindern unter 10 Jahren ist der Eintritt nur in Begleitung einer Begleitperson (mindestens 16 Jahre und schwimmfähig) gestattet. Entsprechende Altersnachweise sind an der Kasse vorzulegen.</p>
+            <p>Der Nachweis der Schwimmfähigkeit kann auch digital als Handyfoto erbracht werden, sofern der Schwimmausweis vollständig erkennbar ist und ein Foto des Personal-/Schülerausweises vorliegt. Kinder ab 10 Jahren ohne Begleitperson müssen das Schwimmabzeichen Bronze vorweisen können.</p>
+          </div>
+        </div>
+        <div>
+          <h2 class="heading-md text-ink">Schwimmflügelpflicht für Nichtschwimmer</h2>
+          <ul class="mt-5 space-y-3">
+            {floatRules.map((r) => (
+              <li class="flex items-start gap-2.5 text-[0.95rem] text-ink fade-in"><Icon name="ShieldCheck" size={18} strokeWidth={2.2} class="mt-0.5 flex-shrink-0 text-tide" />{r}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Aqua-Windeln + Initiative -->
+  <section class="section-stone py-16 md:py-20">
+    <div class="container-mk grid lg:grid-cols-2 gap-5">
+      <div class="card-feature tint-bad card-accent fade-in">
+        <span class="accent-tile mb-4"><Icon name="Baby" size={24} strokeWidth={1.9} /></span>
+        <h3 class="font-display font-extrabold text-ink text-lg">Aqua-Windeln für die Kleinsten</h3>
+        <p class="text-muted leading-relaxed mt-3 text-pretty">Damit wir allen Gästen optimale Wasserqualität bieten können, tragen unsere kleinsten Gäste (bis 3 Jahre) Aqua-Windeln!</p>
+      </div>
+      <div class="card-feature tint-tide card-accent fade-in stagger-1">
+        <span class="accent-tile mb-4"><Icon name="Heart" size={24} strokeWidth={1.9} /></span>
+        <h3 class="font-display font-extrabold text-ink text-lg">Initiative Augenblick</h3>
+        <p class="text-muted leading-relaxed mt-3 text-pretty">„Dein Blick rettet mein Leben." Als Partner der bundesweiten Initiative nureinenaugenblick erinnern wir daran: Ein Kind kann in nur 20 Sekunden ertrinken - bleiben Sie nah dran.</p>
+        <a href="/aktuelles/initiative-augenblick" class="arrow-link mt-5">Mehr zur Kampagne</a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

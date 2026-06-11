@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+
+const features = [
+  { icon: 'Accessibility', title: 'Stufenlos befahrbar', text: 'Unser gesamtes Areal - vom Spaßbad über das Freibad bis zur Sauna - ist stufenlos zugänglich.' },
+  { icon: 'Bath', title: 'Barrierefreie Umkleide & WC', text: 'Barrierefreie Umkleide, Dusche und WC mit Haltegriffen, großzügigen Sitzmöglichkeiten und hauseigenem Rollstuhl für feuchte Umgebungen.' },
+  { icon: 'WavesLadder', title: 'Wellenbecken & Lift', text: 'Das Wellenbecken mit angeschlossenem River (31 Grad) ist direkt befahrbar, fürs Sportbecken steht ein Lift mit Tragetuch bereit.' },
+  { icon: 'Check', title: 'Türen statt Drehkreuze', text: 'Der Zutritt zu Schwimmbad und Saunalandschaft erfolgt über Türen - kein Passieren von Drehtüren oder Drehkreuzen nötig.' },
+  { icon: 'Users', title: 'Begleitperson frei', text: 'Gäste mit „B"-Eintrag im Ausweis erhalten freien Eintritt für die Begleitperson.' },
+  { icon: 'HandCoins', title: 'Ermäßigung ab GdB 50', text: 'Gäste mit einem Grad der Behinderung ab 50 erhalten einen ermäßigten Eintritt.' },
+];
+---
+<Layout title="Barrierefreiheit - AQUANA Würselen" description="Das AQUANA ist barrierefrei: stufenlos zugänglich, mit Rollstuhllift im Sportbecken, barrierefreien Umkleiden, freiem Eintritt für Begleitpersonen und Behinderten-Parkplätzen." current="/barrierefreiheit">
+  <PageHero
+    eyebrow="Für alle Gäste"
+    title="Für alle zugänglich. <em>Wirklich für alle.</em>"
+    subtitle="Im AQUANA setzen wir uns kontinuierlich dafür ein, die Barrierefreiheit zu verbessern und auf die Bedürfnisse aller unserer Gäste einzugehen."
+    crumb="Barrierefreiheit"
+    image="/images/artikel/barrierefreiheit/20250221_112951.jpg"
+    imageAlt="Barrierefreier Zugang im AQUANA"
+    tint="tide"
+    primary={{ href: '/preise-zeiten', label: 'Preise & Zeiten' }}
+  />
+
+  <section class="section-paper py-16 md:py-24">
+    <div class="container-mk">
+      <div class="max-w-3xl space-y-4 text-muted leading-relaxed text-pretty">
+        <p>Unser gesamtes Areal, einschließlich Freibad, Spaßbad und Sauna, ist stufenlos befahrbar, sodass jeder Besucher problemlos Zugang zu unseren Einrichtungen hat.</p>
+        <p>Wir bieten eine barrierefreie Umkleide sowie eine barrierefreie Dusche und WC, die speziell auf die Anforderungen von Rollstuhlfahrern ausgelegt sind. Diese sind mit Haltegriffen ausgestattet, um Sicherheit und Komfort zu gewährleisten. In der Umkleide finden Sie großzügige Sitzmöglichkeiten, und Sie können Ihren elektrischen Rollstuhl abstellen und unseren hauseigenen Rollstuhl nutzen, der für feuchte Umgebungen geeignet ist.</p>
+        <p>Wir verfügen über Behinderten-Parkplätze, die in direkter Eingangsnähe liegen. Wir freuen uns darauf, Ihnen ein unvergessliches Erlebnis im AQUANA zu bieten - barrierefrei und für jeden zugänglich!</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
+        {features.map((f) => (
+          <div class="card-feature tint-tide card-accent fade-in">
+            <span class="accent-tile mb-4"><Icon name={f.icon} size={24} strokeWidth={1.9} /></span>
+            <h3 class="font-display font-bold text-ink text-[1.05rem]">{f.title}</h3>
+            <p class="text-muted text-[0.9rem] leading-relaxed mt-2 text-pretty">{f.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

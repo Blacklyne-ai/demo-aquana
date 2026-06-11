@@ -1,0 +1,72 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import Icon from '../../components/Icon.astro';
+import { site, telLink } from '../../data/site';
+import { courses, courseRegistration } from '../../data/courses';
+---
+<Layout title="Schwimmkurse - AQUANA Würselen" description="Schwimmen lernen im AQUANA: Wassergewöhnung, Anfänger, Fortgeschrittene und Erwachsene - in vier Stufen sicher schwimmen." current="/freizeitbad">
+  <PageHero
+    eyebrow="Schwimmen lernen im AQUANA"
+    title="In vier Stufen zum <em>sicheren Schwimmer.</em>"
+    subtitle="Von der Wassergewöhnung über den Anfängerkurs bis zum Bronzeabzeichen - und auch Erwachsene holen wir sicher ins Wasser. Kleine Gruppen, qualifizierte Schwimmlehrer/innen."
+    crumb="Schwimmkurse"
+    crumbParent="Freizeitbad"
+    crumbParentHref="/freizeitbad"
+    image="/images/artikel/fzb/kleinkinderbecken3.jpg"
+    imageAlt="Schwimmkurs im AQUANA"
+    ghost="KURSE"
+    tint="bad"
+    primary={{ href: `mailto:${site.emailCourses}?subject=Schwimmkurs-Anmeldung`, label: 'Kurs anfragen' }}
+  />
+
+  <section class="section-paper py-16 md:py-24 tint-bad">
+    <div class="container-mk">
+      <div class="grid lg:grid-cols-2 gap-5">
+        {courses.map((c) => (
+          <a href={`/freizeitbad/schwimmkurse/${c.slug}`} class="card-feature card-accent group fade-in flex gap-5">
+            <span class="step-badge flex-shrink-0 !w-14 !h-14 !text-xl">{c.step}</span>
+            <div class="flex-1">
+              <h3 class="font-display font-extrabold text-ink text-xl group-hover:text-accent transition-colors">{c.title}</h3>
+              <p class="text-[0.85rem] font-semibold text-accent mt-0.5">{c.audience}</p>
+              <p class="text-muted text-[0.92rem] leading-relaxed mt-3 text-pretty">{c.lead}</p>
+              <div class="flex flex-wrap gap-x-5 gap-y-1 mt-4 text-[0.85rem] text-muted">
+                <span class="flex items-center gap-1.5"><Icon name="Clock" size={14} class="text-accent" /> {c.scope}</span>
+                <span class="flex items-center gap-1.5"><Icon name="Users" size={14} class="text-accent" /> {c.groupSize}</span>
+                <span class="flex items-center gap-1.5 font-bold text-ink"><Icon name="Euro" size={14} class="text-accent" /> {c.price}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Anmeldung -->
+  <section class="section-stone py-16 md:py-20 tint-bad">
+    <div class="container-mk">
+      <SectionHeading eyebrow="Anmeldung & Infos" title="So melden Sie sich <em>an.</em>" intro={courseRegistration.intro} />
+      <div class="grid sm:grid-cols-3 gap-4 mt-10">
+        <a href={`mailto:${site.emailCourses}`} class="card group !py-6 text-center fade-in">
+          <span class="accent-tile mx-auto"><Icon name="Mail" size={22} strokeWidth={2} /></span>
+          <div class="text-[0.78rem] uppercase tracking-wider text-muted-light font-semibold mt-4">E-Mail</div>
+          <div class="font-display font-bold text-ink group-hover:text-accent transition-colors break-all">{site.emailCourses}</div>
+        </a>
+        <a href={telLink} class="card group !py-6 text-center fade-in">
+          <span class="accent-tile mx-auto"><Icon name="Phone" size={22} strokeWidth={2} /></span>
+          <div class="text-[0.78rem] uppercase tracking-wider text-muted-light font-semibold mt-4">Telefon</div>
+          <div class="font-display font-bold text-ink group-hover:text-accent transition-colors">{site.phoneDisplay}</div>
+        </a>
+        <div class="card !py-6 text-center fade-in">
+          <span class="accent-tile mx-auto"><Icon name="MapPin" size={22} strokeWidth={2} /></span>
+          <div class="text-[0.78rem] uppercase tracking-wider text-muted-light font-semibold mt-4">Vor Ort</div>
+          <div class="font-display font-bold text-ink">Willy-Brandt-Ring 100<br />52146 Würselen</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>
