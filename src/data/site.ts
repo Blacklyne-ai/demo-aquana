@@ -157,6 +157,7 @@ export const nav: NavGroup[] = [
       { href: '/sport/kanu', label: 'Kanu Eskimotierkurs' },
       { href: '/sport/triathlon-klettern', label: 'Triathlon & Klettern' },
       { href: '/sport/aquacycling', label: 'Aquacycling' },
+      { href: '/sport/aqualining', label: 'Aqualining' },
       { href: '/sport/beachvolleyball', label: 'Beachvolleyball' },
     ],
   },
@@ -186,6 +187,7 @@ export const nav: NavGroup[] = [
 export const legalNav = [
   { href: '/impressum', label: 'Impressum' },
   { href: '/datenschutz', label: 'Datenschutz' },
+  { href: '/agb', label: 'AGB' },
   { href: '/haus-und-badeordnung', label: 'Haus- & Badeordnung' },
 ];
 

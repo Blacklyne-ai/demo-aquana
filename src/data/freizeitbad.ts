@@ -31,8 +31,8 @@ export const attractions: { name: string; text: string; image: string; meta?: st
     image: '/images/artikel/fzb/25m_becken.jpg',
   },
   {
-    name: 'Freibad & Kinderaußenbecken',
-    text: 'Das Freibad mit 25-m-Becken und Kinderaußenbecken sorgt bei sommerlichen Temperaturen für angenehmes Verweilen - auf Sonnenterrasse und Liegewiese. Ab 20 Grad Außentemperatur für euch geöffnet (nur in der Sommersaison).',
+    name: 'Beheiztes Freibad & Kinderaußenbecken',
+    text: 'Das beheizte Freibad mit 25-m-Becken und Kinderaußenbecken sorgt bei sommerlichen Temperaturen für angenehmes Verweilen - auf Sonnenterrasse und Liegewiese. Ab 20 Grad Außentemperatur für euch geöffnet (nur in der Sommersaison).',
     image: '/images/artikel/fzb/freibadbecken.jpg',
   },
   {
@@ -45,6 +45,21 @@ export const attractions: { name: string; text: string; image: string; meta?: st
     name: 'Kinderbecken & Wickelhütte',
     text: 'Das Kinderbecken bietet den ganz Kleinen einen integrierten Spielbereich mit kindgerechten Wasserspielgeräten. Eine Wickelhütte im Familienbereich rundet alles ab.',
     image: '/images/artikel/fzb/kleinkinderbecken.jpg',
+  },
+  {
+    name: 'Whirlpools',
+    text: 'Die Whirlpools im Freizeitbad ergänzen die sportiven und entspannenden Aktivitäten - kurz abtauchen, durchatmen, sprudeln lassen.',
+    image: '/images/artikel/fzb/freibadbecken1.jpg',
+  },
+  {
+    name: 'Wasserlaufbälle',
+    text: 'In den großen Wasserlaufbällen über das Wasser laufen, balancieren und kullern - ein Riesenspaß für mutige Wasserratten.',
+    image: '/images/artikel/fzb/attraktionen/wasserball.jpg',
+  },
+  {
+    name: 'Hindernisbahn',
+    text: 'Über die schwimmende Hindernisbahn klettern, balancieren und ins Wasser springen - Action im Action-Programm an Wochenenden und in den Ferien.',
+    image: '/images/artikel/fzb/attraktionen/rutsche.jpg',
   },
 ];
 
@@ -129,7 +144,7 @@ export const freizeitbadPages: ContentPage[] = [
       },
       {
         heading: 'Das Geburtstagsmenü',
-        body: 'Das Geburtstagsmenü beinhaltet einen reservierten und dekorierten Tisch für den ganzen Tag. Zudem ist eine Schatzsuche inkludiert. Auf Wunsch buchen Sie einen Marmorkuchen (400 g) für 8,90 € hinzu.',
+        body: 'Das Geburtstagsmenü beinhaltet einen reservierten und dekorierten Tisch für den ganzen Tag. Zudem ist eine Schatzsuche inkludiert. Auf Wunsch buchen Sie einen Marmorkuchen (400 g) für 8,90 € hinzu.\n\nFür die Einladung der Gäste kann Ihr Kind unsere eigens dafür bestimmten Einladungskarten nutzen - diese senden wir Ihnen auf Wunsch gerne kostenlos zu.',
       },
       {
         heading: 'Was gilt es zu beachten?',

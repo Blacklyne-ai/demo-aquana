@@ -5,7 +5,7 @@ import CtaBand from '../components/CtaBand.astro';
 import Icon from '../components/Icon.astro';
 import { mailFor } from '../data/site';
 
-const values = ['5 €', '10 €', '15 €', '20 €', '25 €', '30 €', '40 €', '50 €', '60 €', '70 €', '80 €', '90 €', '100 €', '120 €', '150 €', '200 €'];
+const values = ['5 €', '10 €', '15 €', '20 €', '25 €', '30 €', '40 €', '50 €', '60 €', '70 €', '80 €', '90 €', '100 €', '110 €', '120 €', '130 €', '140 €', '150 €', '160 €', '170 €', '180 €', '190 €', '200 €'];
 const steps = [
   { icon: 'Gift', title: 'Wert wählen', text: 'Den Gutscheinwert legen Sie selbst fest - von 5 € bis 200 €.' },
   { icon: 'Mail', title: 'Versandweg', text: 'Per E-Mail oder per Post (zzgl. 1,80 € Versandpauschale).' },
@@ -25,7 +25,7 @@ const steps = [
   />
 
   <section class="section-paper py-16 md:py-24">
-    <div class="container-mk">
+    <div class="container-aq">
       <div class="grid sm:grid-cols-3 gap-4">
         {steps.map((s, i) => (
           <div class="card-feature tint-tide card-accent fade-in">
@@ -42,6 +42,7 @@ const steps = [
           {values.map((v) => <span class="tag">{v}</span>)}
         </div>
         <a href={mailFor('Gutschein-Bestellung AQUANA')} class="btn btn-tide mt-7"><Icon name="Gift" size={15} strokeWidth={2.2} /> Gutschein per E-Mail bestellen</a>
+        <p class="text-[0.82rem] text-muted-light mt-4">Versand per E-Mail oder Post (zzgl. 1,80 € Versandpauschale) · Zahlung per Vorkasse/Überweisung oder PayPal · es gelten unsere <a href="/agb" class="underline underline-offset-2 hover:text-tide">AGB</a>.</p>
       </div>
     </div>
   </section>

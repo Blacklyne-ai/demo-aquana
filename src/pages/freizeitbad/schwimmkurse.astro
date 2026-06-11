@@ -23,7 +23,7 @@ import { courses, courseRegistration } from '../../data/courses';
   />
 
   <section class="section-paper py-16 md:py-24 tint-bad">
-    <div class="container-mk">
+    <div class="container-aq">
       <div class="grid lg:grid-cols-2 gap-5">
         {courses.map((c) => (
           <a href={`/freizeitbad/schwimmkurse/${c.slug}`} class="card-feature card-accent group fade-in flex gap-5">
@@ -46,7 +46,7 @@ import { courses, courseRegistration } from '../../data/courses';
 
   <!-- Anmeldung -->
   <section class="section-stone py-16 md:py-20 tint-bad">
-    <div class="container-mk">
+    <div class="container-aq">
       <SectionHeading eyebrow="Anmeldung & Infos" title="So melden Sie sich <em>an.</em>" intro={courseRegistration.intro} />
       <div class="grid sm:grid-cols-3 gap-4 mt-10">
         <a href={`mailto:${site.emailCourses}`} class="card group !py-6 text-center fade-in">

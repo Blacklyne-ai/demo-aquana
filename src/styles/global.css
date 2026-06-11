@@ -131,13 +131,13 @@
 @layer components {
 
   /* ── Container ── */
-  .container-mk {
+  .container-aq {
     max-width: 80rem;
     margin-left: auto; margin-right: auto;
     padding-left: 1.25rem; padding-right: 1.25rem;
   }
   @media (min-width: 768px) {
-    .container-mk { padding-left: 2rem; padding-right: 2rem; }
+    .container-aq { padding-left: 2rem; padding-right: 2rem; }
   }
   .container-narrow {
     max-width: 56rem;
@@ -257,7 +257,7 @@
   }
   .card:hover { border-color: rgb(var(--rgb-ink) / 0.35); transform: translateY(-4px); box-shadow: var(--shadow-lift); }
 
-  /* Feature-Card: Top-Stroke lädt in Volt + Glow folgt der Maus */
+  /* Feature-Card: Top-Stroke + Glow folgt der Maus */
   .card-feature {
     position: relative; background: #fff;
     border: 1px solid rgb(var(--rgb-border)); border-radius: var(--radius-xl);
@@ -281,7 +281,7 @@
   .card-feature:hover::before { transform: scaleX(1); }
   .card-feature:hover::after { opacity: 1; }
 
-  /* Dark-Card mit Volt-Glow-Tracking */
+  /* Dark-Card mit Akzent-Glow-Tracking */
   .card-dark {
     position: relative; background: rgb(255 255 255 / 0.04);
     border: 1px solid rgb(255 255 255 / 0.1); color: rgb(255 255 255 / 0.78);
@@ -341,7 +341,7 @@
     font-weight: 500;
     letter-spacing: -0.015em;
   }
-  /* Volt-Akzentwort auf Dark: glüht, wenn Strom fließt */
+  /* Akzentwort auf Dark in Brand-Farbe */
   .accent-tide {
     color: rgb(var(--rgb-tide));
     text-shadow: 0 0 28px rgb(var(--rgb-tide) / 0.45);
@@ -437,7 +437,7 @@
     -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 75%);
     mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 75%);
   }
-  /* Volt-Glühen am Horizont dunkler Sections */
+  /* Akzent-Glühen am Horizont dunkler Sections */
   .tide-horizon::after {
     content: ""; position: absolute; left: 10%; right: 10%; bottom: -1px; height: 220px;
     background: radial-gradient(ellipse at 50% 100%, rgb(var(--rgb-tide) / 0.13), transparent 70%);

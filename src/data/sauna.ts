@@ -4,12 +4,12 @@ import type { ContentPage } from './worlds';
 export const cabins: { name: string; temp: string; text: string }[] = [
   { name: 'Kräuterstube', temp: '60 °C', text: 'Bei angenehmer Temperatur und leiser Wellnessmusik inhalieren Sie die Düfte frischer Kräuter. Bevorzugt eingesetzt werden Eukalyptus und Lavendel - beruhigend für das Nervensystem und bewährt bei Erkältung.' },
   { name: 'Panorama-Sauna', temp: '85 °C', text: 'Die Sauna mit Ausblick. Ein großer Flatscreen sorgt für eine entspannte Atmosphäre mit Film-Animationen - Ruhe und Entspannung LIVE, z. B. am Strand oder an einer wunderschönen Brandung.' },
-  { name: 'Softsauna', temp: '55 °C', text: 'Eine Oase der Ruhe: eine Schwitzkabine, in der Unterhaltungen nicht erwünscht sind. Spektralfarben und Wellnessmusik entfalten ihre volle Wirkung - durch die hohe Luftfeuchtigkeit (50 %) schwitzen Sie schon bei niedriger Temperatur.' },
+  { name: 'Softsauna', temp: '55 °C', text: 'Eine Oase der Ruhe: eine Schwitzkabine, in der Unterhaltungen nicht erwünscht sind. Durch die hohe Luftfeuchtigkeit (50 %) schwitzen Sie schon bei niedriger Temperatur. So wirken die eingesetzten Spektralfarben: Rot wirkt anregend, Gelb macht unbeschwert, Grün ist entspannend, Blau lädt im Zusammenspiel mit der Musik zum Träumen ein.' },
   { name: 'Finnische Sauna', temp: '90 °C', text: 'Trockene Wärme und geringe Luftfeuchtigkeit ermöglichen eine Entschlackungskur in der Gartensauna. Rasche Wechsel von Wärme und Kälte sind ein hervorragendes Gefäßtraining und Grundlage für einen gesunden Kreislauf.' },
   { name: 'Aufgußhütte „Löyly"', temp: '90 °C', text: 'Löyly = der von den Steinen aufsteigende Dampf. Hier zelebrieren geschulte Saunameister Aufgüsse zur vollen Stunde - als Highlight mit Musik. Die Aufgussdauer beträgt ca. 8 bis 10 Minuten.' },
   { name: 'Würselener Schwitzhütte', temp: '90 °C', text: 'Erleben Sie intensive und besondere Aufgüsse für maximal 12 Teilnehmer/innen. Freitag und Sonntag geöffnet.' },
   { name: 'Sole-Dampfbad', temp: '45 °C', text: 'In den Dampf wird eine Sole aus dem Salz des Toten Meeres injiziert. Das Einatmen tut den Bronchien gut und wirkt wohltuend auf die Haut. Bei annähernd 100 % Luftfeuchtigkeit gerät der Körper schon bei niedriger Temperatur tüchtig ins Schwitzen.' },
-  { name: 'Ruhehaus', temp: 'Ruhe', text: 'Zurückziehen und die Aussicht auf den Saunagarten genießen: 24 Relaxliegen, im rechten Raum mit leiser Wellnessmusik, im linken Raum absolute Ruhe. Für Leseratten sind in der hinteren Reihe Lampen installiert.' },
+  { name: 'Ruhehaus', temp: 'Ruhe', text: 'Zurückziehen und die Aussicht auf den Saunagarten genießen: 24 Relaxliegen, im rechten Raum mit leiser Wellnessmusik, im linken Raum absolute Ruhe. Für Leseratten sind in der hinteren Reihe Lampen installiert. Bitte keine Liegen reservieren, keine Taschen mitnehmen und auf Zeitungen verzichten - wer schmökern möchte, bringt sein persönliches Buch mit.' },
   { name: 'Infrarotkabine', temp: '60 °C', text: 'Regenerieren, entspannen, entschlacken - ein Genuss für Körper und Seele. Die Infrarotwärme dringt tief in den Körper ein; Immunsystem und Stoffwechsel werden positiv beeinflusst.' },
 ];
 
@@ -27,12 +27,12 @@ export const langeNaechte: { date: string; theme: string }[] = [
   { date: '13.03.2026', theme: 'Magischer Abend' },
   { date: '27.03.2026', theme: 'Rock Party' },
   { date: '10.04.2026', theme: 'Holländischer Abend' },
-  { date: '24.04.2026', theme: 'Neue Deutsche Welle' },
+  { date: '24.04.2026', theme: 'Neue deutsche Welle' },
   { date: '08.05.2026', theme: 'Up to Date - Aktuelle Hits' },
   { date: '22.05.2026', theme: '90iger Party' },
   { date: '05.06.2026', theme: 'Schlagerparty' },
   { date: '19.06.2026', theme: 'Sommererwachen mit Grillen' },
-  { date: '03.07.2026', theme: 'Amerikanischer Abend' },
+  { date: '03.07.2026', theme: 'Amerikanischen Abend' },
   { date: '17.07.2026', theme: 'Sommerfest' },
   { date: '31.07.2026', theme: 'Karibische Nacht' },
   { date: '14.08.2026', theme: 'Mallorca Party' },
@@ -297,7 +297,12 @@ export const saunaPages: ContentPage[] = [
       {
         heading: 'Entspannt durch die Schwangerschaft',
         body: 'Die regelmäßige Sauna entspannt und entkrampft die Muskeln auch im Beckenbereich - das erleichtert die Geburt. Durch das Wechselspiel von Wärme und Kühle wird die Durchblutung angeregt; das beugt Krampfadern und Thrombosen vor. Frauen, die regelmäßig saunabaden, haben häufig weniger Beschwerden in der Schwangerschaft.',
-        note: 'Bei vorzeitiger Wehentätigkeit ist Saunabaden tabu. Grundsätzlich gilt bei Erkrankungen in der Schwangerschaft: vor dem Saunabad den Arzt um Rat fragen.',
+        note: 'Bei vorzeitiger Wehentätigkeit ist Saunabaden tabu. Grundsätzlich gilt bei Erkrankungen in der Schwangerschaft (auch bei Pilzinfektionen): vor dem Saunabad den Arzt um Rat fragen.',
+      },
+      {
+        heading: 'Sauna für Säuglinge und Babys',
+        body: 'Ist das Baby auf der Welt, spricht nichts dagegen, gemeinsam mit dem Nachwuchs in die Sauna zu gehen. Eine Untersuchung der Otto-von-Guericke-Universität Magdeburg zeigt eindeutig: Säuglingen bekommt die Wärme und anschließende Abkühlung gut - getestet wurde mit Säuglingen ab dem dritten Lebensmonat, natürlich auf dem Schoß von Mama oder Papa.\n\nBei den Kindern wird das Herz-Kreislauf-System gestärkt und die Abwehrkräfte werden aktiviert. „Saunakinder" erkranken erheblich seltener an Atemwegskatarrhen und anderen Infektionskrankheiten wie Bronchitis, Asthma und grippalen Infekten. Nach dem Saunagang sind die Babys entspannter und schlafen besser. In öffentlichen Saunabädern ist es üblich, Kleinkinder erst ab dem dritten Lebensjahr mitzunehmen - dann sind die Kinder meistens „trocken".',
+        note: 'Eine Gefahr fürs Baby im Bauch besteht zu keiner Zeit: Mit gesundheitlichen Problemen ist erst ab Körperkerntemperaturen von deutlich über 40 °C zu rechnen - solche Werte werden beim regelgerechten Saunabaden nicht erreicht (Deutscher Sauna-Bund).',
       },
     ],
   },

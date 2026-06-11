@@ -28,7 +28,7 @@ export const priceTables: { title: string; note?: string; rows: PriceRow[] }[] =
       { label: 'Montag - Freitag', price: '23,00 €', reduced: '21,00 €' },
       { label: 'Samstag, Sonntag, Feiertage', price: '24,50 €', reduced: '22,00 €' },
       { label: 'Tagestarif', sub: 'Mo-Fr außer feiertags, 10:00-17:00 Uhr', price: '21,00 €', reduced: '19,00 €' },
-      { label: 'Dienstag: Campus-Tag 3)', price: '17,00 €' },
+      { label: 'Dienstag: Campus-Tag', price: '17,00 €' },
       { label: '10er Karten', price: '200,00 €' },
       { label: 'Feierabendtarif ab 17:00 Uhr', sub: 'Mo-Do, außer Feiertage + Mottoabende', price: '19,50 €' },
       { label: 'Feierabendtarif ab 17:00 Uhr', sub: 'Freitags', price: '21,00 €' },
@@ -55,7 +55,7 @@ export const saunaAbos: PriceRow[] = [
 export const parking: PriceRow[] = [
   { label: 'Tageskarte', price: '2,00 €' },
   { label: 'Parkplatz-Zehnerkarte', price: '12,00 €' },
-  { label: 'Wohnmobile', sub: 'pro Übernachtung 6)', price: '20,00 €' },
+  { label: 'Wohnmobile', sub: 'pro Übernachtung', price: '20,00 €' },
   { label: 'Jahresparkticket', price: '70,00 €' },
 ];
 
@@ -66,6 +66,9 @@ export const priceNotes: string[] = [
   'Geburtstagskinder (auch Volljährige) zahlen am Geburtstag gegen Nachweis keinen Eintritt.',
   'Ist eine Person schwerbehindert und hat ein „B" im Ausweis, hat die Begleitperson freien Eintritt.',
   'Kinder bis 3 Jahre haben freien Eintritt.',
+  'Mit den Wertkarten (4) bezahlen Sie Eintritt und Verzehr - der Nachlass wird allerdings nur auf den Eintritt angerechnet.',
+  'Sauna-Abo (5): Laufzeit 12 Monate; eine Person hat freien Eintritt ins Freizeitbad.',
+  'Unser Imbiss ist außerhalb der Ferien von Dienstag bis Donnerstag geschlossen - verschiedene Automaten mit reichhaltigem Angebot stehen Ihnen zur Verfügung.',
 ];
 
 export const reducedNote =

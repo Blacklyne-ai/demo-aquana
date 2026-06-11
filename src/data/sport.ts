@@ -8,6 +8,7 @@ export const sportOffers: { slug: string; name: string; icon: string; text: stri
   { slug: 'kanu', name: 'Kanu Eskimotierkurs', icon: 'Sailboat', text: 'Die Eskimorolle bringt Sicherheit und Bootsgefühl - donnerstags im 25-m-Becken.' },
   { slug: 'triathlon-klettern', name: 'Triathlon & Klettern', icon: 'Mountain', text: 'Klettern „Just For Fun" an der 7-m-Kletterwand und Triathlontraining der DJK Armada Würselen.' },
   { slug: 'aquacycling', name: 'Aquacycling', icon: 'Bike', text: 'Radfahren im Wasser: das ideale Herz-Kreislauf-Training, gelenkschonend und für jedes Level.' },
+  { slug: 'aqualining', name: 'Aqualining', icon: 'Waypoints', text: 'Trendsport auf dem 5 cm breiten Band über dem Schwimmbecken - Balance testen und wer abrutscht, landet im Wasser.' },
   { slug: 'beachvolleyball', name: 'Beachvolleyball', icon: 'Volleyball', text: 'Unser Beachvolleyballfeld am Freibad steht euch in den Freibadöffnungszeiten kostenlos zur Verfügung.' },
 ];
 
@@ -30,7 +31,7 @@ export const sportPages: ContentPage[] = [
       },
       {
         heading: 'Eine Kooperation mit',
-        body: 'Tauchschule Aachen · Telefon 0241 / 557978 oder 0171 / 4715656 · www.tauchschule-aachen.de\n\nRosi\'s Tauchschule · www.rosis-tauchschule.de',
+        body: 'Tauchschule Aachen · Telefon 0241 / 557978 oder 0171 / 4715656 · www.tauchschule-aachen.de · info@tauchschule-aachen.de\n\nRosi\'s Tauchschule · www.rosis-tauchschule.de',
       },
     ],
     facts: [
@@ -76,7 +77,11 @@ export const sportPages: ContentPage[] = [
     sections: [
       {
         heading: 'Aqua- und Bodyfit',
-        body: 'Aquafitness eignet sich für alle Altersklassen und Leistungsstufen. Kurse montags und donnerstags zu mehreren Zeiten - weitere Informationen unter www.aqua-bodyfit.de.',
+        body: 'Aquafitness eignet sich für alle Altersklassen und Leistungsstufen. Weitere Informationen unter www.aqua-bodyfit.de.',
+        bullets: [
+          'Mo 09:45-10:30 · 10:35-11:20 · 18:00-18:45 · 18:50-19:35 · 19:40-20:25 · 20:30-21:15 Uhr',
+          'Do 09:45-10:30 · 10:45-11:30 · 20:00-20:45 · 20:50-21:35 Uhr',
+        ],
       },
       {
         heading: 'Aquarobik',
@@ -168,6 +173,26 @@ export const sportPages: ContentPage[] = [
     ],
     ctaLabel: 'Aquacycling anfragen',
     ctaHref: 'mailto:info@aquana.de?subject=Aquacycling-Kurs%20AQUANA',
+  },
+  {
+    slug: 'aqualining',
+    navLabel: 'Aqualining',
+    title: 'Aqualining',
+    eyebrow: 'Trendsport über dem Becken',
+    lead: 'Ein riesen Spaß für Jung und Alt! Lauf auf einer Aqualine über unser Schwimmbecken und teste deine Balance, Konzentration und Koordination.',
+    heroImage: '/images/artikel/fzb/attraktionen/slagline.jpg',
+    heroAlt: 'Aqualining im AQUANA',
+    sections: [
+      {
+        body: 'Das „Aqualining" ist eine Trendsportart und eng verwandt mit dem Seiltanzen. Anstelle des Seils wird jedoch ein 5 cm breites Band verwendet und über ein Schwimmbecken gespannt. Durch die Breite ist es einfacher, die Balance zu halten - und wer abrutscht, landet sicher im erfrischenden Wasser des Schwimmbeckens.\n\nWer Lust hat, kann die Slackline ab sofort bei uns testen. Das Team vom AQUANA wünscht allen Artisten viel Spaß!',
+        note: 'Die Aqualine kann nur in Betrieb genommen werden, wenn es die Sicherheit des Badebetriebes zulässt.',
+      },
+    ],
+    facts: [
+      { label: 'Band', value: '5 cm breit' },
+      { label: 'Für', value: 'Jung & Alt' },
+      { label: 'Landung', value: 'im Becken' },
+    ],
   },
   {
     slug: 'beachvolleyball',

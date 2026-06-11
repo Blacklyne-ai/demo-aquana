@@ -33,7 +33,7 @@ const topics = [
 
   <!-- Themen -->
   <section class="section-paper py-16 md:py-24 tint-bad">
-    <div class="container-mk">
+    <div class="container-aq">
       <SectionHeading eyebrow="Im Freizeitbad" title="Alles, was das <em>Wasser hergibt.</em>" />
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
         {topics.map((t) => (
@@ -52,7 +52,7 @@ const topics = [
   <section class="section-ink py-20 md:py-28 relative overflow-hidden tint-bad">
     <div class="absolute inset-0 grid-overlay grid-overlay-fade opacity-50" aria-hidden="true"></div>
     <div class="glow-orb" style="width:480px;height:480px;top:-150px;right:-60px;background:rgb(var(--rgb-aqua));opacity:0.12;" aria-hidden="true"></div>
-    <div class="container-mk relative">
+    <div class="container-aq relative">
       <SectionHeading eyebrow="Action pur" title="Unsere <em>Attraktionen.</em>" light={true} ctaHref="/freizeitbad/attraktionen" ctaLabel="Alle Attraktionen" />
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
         {attractions.slice(0, 8).map((a) => (
@@ -70,7 +70,7 @@ const topics = [
 
   <!-- Schwimmkurse Teaser -->
   <section class="section-paper py-20 md:py-28 tint-bad">
-    <div class="container-mk">
+    <div class="container-aq">
       <SectionHeading eyebrow="Schwimmen lernen" title="In vier Stufen zum <em>sicheren Schwimmer.</em>" ctaHref="/freizeitbad/schwimmkurse" ctaLabel="Zu den Schwimmkursen" />
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
         {courses.map((c) => (

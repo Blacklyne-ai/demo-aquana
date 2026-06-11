@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../data/site';
+---
+<Layout title="AGB - AQUANA Würselen" description="Allgemeine Geschäftsbedingungen für den Versand von AQUANA-Gutscheinen." current="/agb" noindex={true}>
+  <PageHero eyebrow="Rechtliches" title="Allgemeine Geschäftsbedingungen" crumb="AGB" tint="tide" />
+
+  <section class="section-paper py-12 md:py-16">
+    <div class="container-narrow">
+      <div class="legal-prose">
+        <p>Diese Allgemeinen Geschäftsbedingungen gelten für den Erwerb und Versand von Geschenk-Gutscheinen des AQUANA - Euregio Freizeitbad Würselen.</p>
+
+        <h2>§ 1 Geltungsbereich</h2>
+        <p>Für alle Gutschein-Bestellungen über diese Website gelten ausschließlich die nachfolgenden Bedingungen in ihrer zum Zeitpunkt der Bestellung gültigen Fassung.</p>
+
+        <h2>§ 2 Preise</h2>
+        <p>Den Gutscheinwert legen Sie selbst fest (von 5 € bis 200 €). Alle Gutscheinbeträge verstehen sich inklusive der gesetzlichen Umsatzsteuer (7 %).</p>
+
+        <h2>§ 3 Bestellung & Lieferung</h2>
+        <p>Die Lieferung des Gutscheins erfolgt nach Wahl per E-Mail oder per Post (zzgl. 1,80 € Versandpauschale). Angegebene Lieferfristen sind unverbindlich; Express- oder Sonderwünsche gehen zu Lasten des Bestellers.</p>
+
+        <h2>§ 4 Zahlung</h2>
+        <p>Die Bezahlung erfolgt per Vorkasse/Überweisung oder PayPal. Der Versand des Gutscheins erfolgt nach Eingang der Zahlung.</p>
+        <p class="text-[0.9rem]"><em>Hinweis: Die konkrete Bankverbindung für die Überweisung wird vom Betreiber ergänzt (Operator-TODO).</em></p>
+
+        <h2>§ 5 Einlösung</h2>
+        <p>Gutscheine sind im AQUANA für Eintritt und gastronomische Leistungen einlösbar. Eine Barauszahlung des Gutscheinwerts ist nicht möglich.</p>
+
+        <h2>§ 6 Kontakt</h2>
+        <p>{site.legalName}<br />{site.address.street}, {site.address.postcode} {site.address.city}<br />Telefon: {site.phoneDisplay} · E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a></p>
+
+        <p class="text-[0.85rem]"><em>Hinweis: Diese AGB dienen der Demonstration und sind vor dem Live-Gang durch den Betreiber rechtlich zu prüfen und an die tatsächlichen Zahlungs-/Versandmodalitäten anzupassen.</em></p>
+      </div>
+    </div>
+  </section>
+</Layout>

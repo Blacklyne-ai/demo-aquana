@@ -59,6 +59,7 @@ export const news: NewsItem[] = [
       'Ein Kind kann in nur 20 Sekunden ertrinken. Lautlos. Unsichtbar. Genau deshalb setzen wir auf Aufklärung und klare Botschaften. Ob auf Plakaten, Bannern oder digital - „Dein Blick rettet mein Leben" ist mehr als ein Slogan. Es ist ein Aufruf an alle Eltern, Großeltern und Begleitpersonen: Du hast die Verantwortung.',
       'Mit der Kampagne wollen wir dir helfen, im Bad bewusster hinzusehen, nah dran zu bleiben und Ablenkungen zu vermeiden. Denn Sicherheit beginnt nicht erst beim Schwimmkurs - sie beginnt bei dir.',
       'Unser Team unterstützt dich mit Informationen, Tipps und gut sichtbaren Erinnerungen im gesamten Bad. Gemeinsam schaffen wir ein sicheres Badeerlebnis für alle.',
+      'Mehr zur Kampagne: initiativeaugenblick.de · #initiativeaugenblick',
     ],
     link: { label: 'initiativeaugenblick.de', href: 'https://www.initiativeaugenblick.de' },
   },

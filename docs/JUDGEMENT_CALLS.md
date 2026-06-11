@@ -67,8 +67,48 @@ Operator-TODOs. Quelle aller Inhalte: aquana.de (Stand Juni 2026).
 - **Datenschutz/Haus- & Badeordnung**: rechtlich finalisieren; die vollständige,
   verbindliche Badeordnung als Aushang/PDF beibehalten.
 
+## Detail-Audit (Vollabgleich alt ↔ neu) - geschlossene Lücken
+
+Nach einem seitenweisen Audit nachgetragen:
+- **Sport**: fehlendes Angebot **Aqualining** (Trendsport, 5-cm-Band überm Becken)
+  als eigene Seite + Nav ergänzt (Hub jetzt 8 Angebote). **Aqua-Bodyfit**: alle
+  10 konkreten Kurszeiten (Mo/Do) nachgetragen statt „mehrere Zeiten". Tauchen:
+  E-Mail der Tauchschule ergänzt.
+- **Freizeitbad**: **Whirlpools, Wasserlaufbälle, Hindernisbahn** als Attraktionen
+  ergänzt; Freibad als „beheizt" gekennzeichnet; Kindergeburtstag-**Einladungskarten**
+  nachgetragen.
+- **Sauna**: Schwangerschafts-/Sauna-Tipps um den **Säuglings-/Baby-Abschnitt** +
+  Experten-/>40-°C-Hinweis erweitert; Softsauna-**Spektralfarben** + Ruhehaus-Regeln
+  ergänzt; Motto-Wortlaut „Neue deutsche Welle" / „Amerikanischen Abend" verbatim
+  korrigiert.
+- **Preise**: **Imbiss-Hinweis** (Di-Do außerhalb Ferien geschlossen) + Wertkarten-
+  Fußnote (4) + Sauna-Abo-Fußnote (5) ergänzt; verwaiste Fußnoten 3)/6) entfernt.
+- **Gutscheine**: alle 23 Werte (5-200 €) vervollständigt (110/130/140/160/170/180/190
+  fehlten); AGB-Hinweis + Zahlungs-/Versandzeile ergänzt.
+- **AGB-Seite** neu (alte Seite existierte, fehlte) - in Footer-Legalnav verlinkt.
+- **News**: `#initiativeaugenblick` ergänzt.
+- **Impressum**: **Bildnachweise** ergänzt.
+
+## Offene Punkte aus dem Audit (Operator entscheiden)
+
+- **AGB-Bankverbindung**: echte IBAN bewusst NICHT im öffentlichen Demo-Repo
+  hinterlegt - Betreiber trägt Bankdaten + 7-%-USt-Detail nach.
+- **Bildnachweise**: pro tatsächlich verwendetem Bild den Einzelnachweis prüfen
+  (Teile stammen aus dem Fotolia/Shutterstock-Pool der Altseite).
+- **Alt-Site widerspricht sich selbst**: Gruppentarif steht auf preise-zeiten mit
+  **8,80 €**, auf schulklassen-gruppen als **7,50 €** - beide verbatim übernommen,
+  Betreiber muss den gültigen Preis klären.
+- **„Bürgergeld"** statt „Hartz IV" (2026 korrekt) - bewusste Modernisierung.
+- **News-Daten/Kategorien** plausibel gesetzt, aber nicht quellenbelegt - vor
+  Live-Gang verifizieren.
+- **Partner-Beschreibungen** generisch (Altseite hatte nur Namen + 1 Link).
+- **Haus- & Badeordnung**: nur Kernregeln; rechtsverbindliche Vollfassung bleibt
+  Aushang/Kasse.
+
 ## Technik
 
 - Astro 5 STATIC, Tailwind v3.4, `@lucide/astro`, `inlineStylesheets: 'always'`,
-  Fonts latin-only + Hero-Fonts preloaded. Kein SSR, kein Adapter.
+  eigene `@font-face` mit `font-display: optional` (kein CLS), Fonts latin-only +
+  Hero-Fonts preloaded. Kein SSR, kein Adapter. 55 Seiten.
 - Deploy: Cloudflare Pages - Framework "Astro", Build `npm run build`, Output `dist`.
+- Lighthouse Desktop: Performance 99 · Accessibility 100 · Best-Practices 100 · SEO 100.

@@ -20,14 +20,14 @@ import { worlds } from '../data/worlds';
   />
 
   <section class="section-paper py-8">
-    <div class="container-mk">
+    <div class="container-aq">
       <div class="rounded-2xl border border-line bg-white shadow-soft overflow-hidden"><StatsBand /></div>
     </div>
   </section>
 
   <!-- Wissen Sie schon -->
   <section class="section-paper py-16 md:py-24">
-    <div class="container-mk">
+    <div class="container-aq">
       <SectionHeading eyebrow="Wissen Sie schon …" title="Sieben Dinge über <em>das AQUANA.</em>" />
       <div class="grid md:grid-cols-2 gap-x-10 gap-y-1 mt-10 max-w-5xl">
         {wissenSieSchon.map((f, i) => (
@@ -43,7 +43,7 @@ import { worlds } from '../data/worlds';
 
   <!-- Warum AQUANA -->
   <section class="section-stone py-16 md:py-20">
-    <div class="container-mk">
+    <div class="container-aq">
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {whyCards.map((c) => (
           <div class="tile fade-in">
@@ -59,7 +59,7 @@ import { worlds } from '../data/worlds';
   <!-- Vier Welten -->
   <section class="section-ink py-20 md:py-28 relative overflow-hidden">
     <div class="absolute inset-0 grid-overlay grid-overlay-fade opacity-50" aria-hidden="true"></div>
-    <div class="container-mk relative">
+    <div class="container-aq relative">
       <SectionHeading eyebrow="Entdecken" title="Unsere <em>vier Welten.</em>" light={true} />
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
         {worlds.map((w) => <WorldCard world={w} />)}
