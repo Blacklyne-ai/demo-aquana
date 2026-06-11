@@ -112,3 +112,17 @@ Nach einem seitenweisen Audit nachgetragen:
   Hero-Fonts preloaded. Kein SSR, kein Adapter. 55 Seiten.
 - Deploy: Cloudflare Pages - Framework "Astro", Build `npm run build`, Output `dist`.
 - Lighthouse Desktop: Performance 99 · Accessibility 100 · Best-Practices 100 · SEO 100.
+
+## Bewertungen & interaktiver Hero (Nachtrag)
+
+- **Bewertungen sind ECHT** (`src/data/reviews.ts`): Aggregat 3,8 ★ / 3.787 = echtes
+  Google-Rating (verlinkt). Einzelzitate verbatim aus öffentlichen Quellen
+  (Parkscout, golocal, Tripadvisor) mit Quellenangabe. Eine fremdsprachige Original-
+  Bewertung (Tripadvisor 2026) wurde ins Deutsche übertragen und so gekennzeichnet.
+  Nichts erfunden. Die 3,8 ist real - falls die Bad-Leitung lieber kuratierte
+  Lieblings-Reviews zeigt, einfach liefern.
+- **Hero neu**: voller Viewport, interaktiver Vier-Welten-Switcher (Crossfade-
+  Hintergründe, Akzentfarbe + Glow folgen der aktiven Welt, Auto-Rotation 6,5 s mit
+  Hover-Pause, reduced-motion-sicher), Live-Öffnungsstatus (client-seitig aus den
+  Öffnungszeiten berechnet), drei Glas-Karten (Google-Review, Öffnungszeiten,
+  Barrierefrei). CLS bleibt 0, LCP 0,9 s.

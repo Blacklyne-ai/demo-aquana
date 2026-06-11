@@ -1,0 +1,14 @@
+---
+// Bewertungs-Sterne (Gold-Füllung). value 1-5, rundet für die Anzeige.
+interface Props { value?: number; size?: number; emptyClass?: string }
+const { value = 5, size = 16, emptyClass = '' } = Astro.props;
+const full = Math.round(value);
+const STAR = 'M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z';
+---
+<span class="inline-flex items-center gap-0.5" role="img" aria-label={`${value} von 5 Sternen`}>
+  {Array.from({ length: 5 }).map((_, i) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" class={i < full ? '' : emptyClass} fill={i < full ? '#F6B100' : 'currentColor'} style={i < full ? '' : 'opacity:0.3'}>
+      <path d={STAR} />
+    </svg>
+  ))}
+</span>
