@@ -8,6 +8,12 @@ export const attractions: { name: string; text: string; image: string; meta?: st
     image: '/images/artikel/fzb/wellenbecken.jpg',
   },
   {
+    name: 'Lazy River',
+    text: 'Einfach treiben lassen: Mit dem Großreifen geht es gemütlich durch unseren angeschlossenen River - eine entspannte Runde im warmen Wasser.',
+    image: '/images/artikel/fzb/wellenbecken3.jpg',
+    meta: '31 °C',
+  },
+  {
     name: 'Black Hole',
     text: 'Running-Lights, Spotlights - ein besonderes Erlebnis, ins Dunkel zu verschwinden: Black Hole macht es auf 75 Metern möglich!',
     image: '/images/artikel/fzb/blackhole1.jpg',

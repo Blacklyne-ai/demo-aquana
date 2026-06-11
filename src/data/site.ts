@@ -138,7 +138,7 @@ export const nav: NavGroup[] = [
       { href: '/saunawelt/aufgussplan', label: 'Aufgussplan' },
       { href: '/saunawelt/besondere-aufguesse', label: 'Besondere Aufgüsse' },
       { href: '/saunawelt/sauna-garten', label: 'Sauna-Garten' },
-      { href: '/saunawelt/abo-preise', label: 'Sauna Abo Preise' },
+      { href: '/saunawelt/abo-preise', label: 'Sauna-Abo-Preise' },
       { href: '/saunawelt/infrarotkabine', label: 'Infrarotkabine' },
       { href: '/saunawelt/massagen-wellness', label: 'Massagen & Wellness' },
       { href: '/saunawelt/lange-saunanaechte', label: 'Lange Saunanächte' },

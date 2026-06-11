@@ -38,8 +38,8 @@ const steps = [
 
       <div class="mt-12 rounded-2xl bg-white border border-line p-7 fade-in">
         <h3 class="font-display font-extrabold text-ink text-lg">Beliebte Gutscheinwerte</h3>
-        <div class="flex flex-wrap gap-2 mt-5">
-          {values.map((v) => <span class="tag">{v}</span>)}
+        <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-2 mt-5">
+          {values.map((v) => <span class="tag w-full justify-center">{v}</span>)}
         </div>
         <a href={mailFor('Gutschein-Bestellung AQUANA')} class="btn btn-tide mt-7"><Icon name="Gift" size={15} strokeWidth={2.2} /> Gutschein per E-Mail bestellen</a>
         <p class="text-[0.82rem] text-muted-light mt-4">Versand per E-Mail oder Post (zzgl. 1,80 € Versandpauschale) · Zahlung per Vorkasse/Überweisung oder PayPal · es gelten unsere <a href="/agb" class="underline underline-offset-2 hover:text-tide">AGB</a>.</p>

@@ -47,6 +47,15 @@ export const langeNaechte: { date: string; theme: string }[] = [
   { date: '18.12.2026', theme: 'Merry Christmas' },
 ];
 
+// Kommende Termine ab heute (Build-Zeit) - sonst Fallback auf die ersten.
+export function upcomingNaechte(count: number) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const parse = (d: string) => { const [dd, mm, yy] = d.split('.').map(Number); return new Date(yy, mm - 1, dd); };
+  const future = langeNaechte.filter((n) => parse(n.date) >= today);
+  return (future.length >= count ? future : langeNaechte).slice(0, count);
+}
+
 // Wellnesssamstage 2026 - verbatim Daten
 export const wellnessSamstage: string[] = [
   '27.12.2025', '10.01.2026', '24.01.2026', '07.02.2026', '21.02.2026', '07.03.2026',
@@ -166,7 +175,7 @@ export const saunaPages: ContentPage[] = [
   },
   {
     slug: 'abo-preise',
-    navLabel: 'Sauna Abo Preise',
+    navLabel: 'Sauna-Abo-Preise',
     title: 'Sauna-Abo-Preise',
     eyebrow: 'Regelmäßig entspannen',
     lead: 'Wer regelmäßig sauniert, fährt mit einem Abo am günstigsten. Wählen Sie zwischen BASIC und PREMIUM.',

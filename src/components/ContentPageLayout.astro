@@ -39,9 +39,9 @@ const primary = page.ctaHref
   {page.facts && page.facts.length > 0 && (
     <section class={`section-paper pb-4 tint-${tint}`}>
       <div class="container-aq">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 -mt-4">
+        <div class="flex flex-wrap gap-3 -mt-4">
           {page.facts.map((f) => (
-            <div class="rounded-2xl border border-line bg-white p-5 fade-in">
+            <div class="flex-1 min-w-[140px] rounded-2xl border border-line bg-white p-5 fade-in">
               <div class="text-[0.72rem] font-mono uppercase tracking-wider text-muted-light">{f.label}</div>
               <div class="font-display font-extrabold text-ink text-lg mt-1 leading-tight">{f.value}</div>
             </div>
@@ -83,9 +83,11 @@ const primary = page.ctaHref
               <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
                 {s.cards.map((c) => (
                   <div class="card-feature card-accent fade-in flex flex-col">
-                    {c.meta && <span class="world-badge-soft self-start mb-3">{c.meta}</span>}
-                    <h3 class="font-display font-bold text-ink text-[1.05rem] leading-snug">{c.title}</h3>
-                    {c.text && <p class="text-muted text-[0.9rem] leading-relaxed mt-2 text-pretty flex-1">{c.text}</p>}
+                    <div class="flex items-start justify-between gap-3">
+                      <h3 class="font-display font-bold text-ink text-[1.05rem] leading-snug">{c.title}</h3>
+                      {c.meta && <span class="world-badge-soft flex-shrink-0 !text-[0.62rem] mt-0.5">{c.meta}</span>}
+                    </div>
+                    {c.text && <p class="text-muted text-[0.9rem] leading-relaxed mt-2.5 text-pretty flex-1">{c.text}</p>}
                   </div>
                 ))}
               </div>

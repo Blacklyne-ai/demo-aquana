@@ -13,12 +13,12 @@ import { worlds } from '../data/worlds';
 import { courses } from '../data/courses';
 import { news } from '../data/news';
 import { whyCards } from '../data/trust';
-import { langeNaechte } from '../data/sauna';
+import { upcomingNaechte } from '../data/sauna';
 import { priceTables } from '../data/prices';
 import { reviews, reviewSummary, heroReview } from '../data/reviews';
 
 const topPrices = priceTables[0].rows.slice(0, 3);
-const nextNights = langeNaechte.slice(0, 3);
+const nextNights = upcomingNaechte(3);
 
 // Interaktiver Hero: 4 Welten als Hintergrund-Switcher (crisp ≥800px)
 const HERO_BG = [
@@ -403,8 +403,9 @@ const heroWorlds = worlds.map((w, i) => ({ ...w, bg: HERO_BG[i], accent: HERO_AC
         </div>
       </div>
       <!-- Newsletter -->
-      <div class="card-dark tint-aqua fade-in stagger-1 flex flex-col justify-center">
-        <span class="accent-tile mb-4" style="background: rgb(var(--rgb-aqua) / 0.15); color: rgb(var(--rgb-aqua-bright)); border-color: rgb(var(--rgb-aqua) / 0.3);"><Icon name="Mail" size={24} strokeWidth={1.9} /></span>
+      <div class="tint-aqua fade-in stagger-1 flex flex-col justify-center rounded-2xl p-7 md:p-8 bg-ink-deep relative overflow-hidden">
+        <div class="glow-orb" style="width:260px;height:260px;top:-90px;right:-50px;background:rgb(var(--rgb-aqua));opacity:0.16;" aria-hidden="true"></div>
+        <span class="accent-tile mb-4 relative" style="background: rgb(var(--rgb-aqua) / 0.15); color: rgb(var(--rgb-aqua-bright)); border-color: rgb(var(--rgb-aqua) / 0.3);"><Icon name="Mail" size={24} strokeWidth={1.9} /></span>
         <h3 class="font-display font-extrabold text-white text-xl">Newsletter abonnieren</h3>
         <p class="text-white/65 text-[0.95rem] leading-relaxed mt-2 text-pretty">Aktionen, neue Kurstermine und lange Saunanächte - kein Highlight verpassen.</p>
         <form id="nl-form" class="flex flex-col sm:flex-row gap-2.5 mt-5">

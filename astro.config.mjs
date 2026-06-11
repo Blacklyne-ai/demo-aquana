@@ -12,6 +12,7 @@ import sitemap from '@astrojs/sitemap';
 // ─────────────────────────────────────────────────────────────
 export default defineConfig({
   site: 'https://demo-aquana.pages.dev',
+  devToolbar: { enabled: false },
   integrations: [
     tailwind({ applyBaseStyles: false }),
     sitemap(),

@@ -5,7 +5,7 @@ import CtaBand from '../../components/CtaBand.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import Icon from '../../components/Icon.astro';
 import { ticketLink } from '../../data/site';
-import { cabins, langeNaechte } from '../../data/sauna';
+import { cabins, upcomingNaechte } from '../../data/sauna';
 
 const topics = [
   { href: '/saunawelt/saunieren', icon: 'Flame', label: 'Saunieren', text: 'Neun Saunen und Kabinen von 45 bis 90 °C.' },
@@ -19,7 +19,7 @@ const topics = [
   { href: '/saunawelt/wellnesssamstage', icon: 'Sun', label: 'Wellnesssamstage', text: 'Samstags ganz in Ruhe entspannen.' },
   { href: '/saunawelt/sauna-tipps', icon: 'Info', label: 'Sauna-Tipps', text: 'Wissenswertes rund ums Saunieren.' },
 ];
-const nextNights = langeNaechte.slice(0, 6);
+const nextNights = upcomingNaechte(6);
 ---
 <Layout title="Saunawelt - AQUANA Würselen" description="Neun Saunen und Kabinen, Sauna-Garten mit Pool, Aufgüsse und lange Saunanächte - die SaunaPremium-Saunawelt im AQUANA Würselen." current="/saunawelt">
   <PageHero

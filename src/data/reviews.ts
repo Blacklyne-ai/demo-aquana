@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────
-// Bewertungen — ECHT, aus öffentlichen Quellen (verbatim, Quelle genannt).
+// Bewertungen - ECHT, aus öffentlichen Quellen (verbatim, Quelle genannt).
 // Aggregat = echtes Google-Rating. Nichts erfunden.
 // Fremdsprachige Original-Reviews ins Deutsche übertragen (gekennzeichnet).
 // ─────────────────────────────────────────────────────────────
@@ -13,7 +13,7 @@ export const reviewSummary = {
 
 export interface Review {
   name: string;
-  rating: number;        // 1–5
+  rating: number;        // 1-5
   text: string;
   source: string;        // Plattform
   tint?: string;         // Welt-Akzent für die Karte
