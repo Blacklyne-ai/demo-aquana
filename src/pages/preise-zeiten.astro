@@ -33,8 +33,8 @@ const schema = {
           <dl class="mt-4 divide-y divide-line">
             {hours.bad.map((h) => (
               <div class="flex justify-between gap-3 py-3">
-                <dt class="text-muted">{h.day}</dt>
-                <dd class={`font-semibold text-right ${h.closed ? 'text-muted-light' : 'text-ink'}`}>{h.time}</dd>
+                <dt class="text-muted min-w-0">{h.day}</dt>
+                <dd class={`font-semibold text-right whitespace-nowrap flex-shrink-0 ${h.closed ? 'text-muted-light' : 'text-ink'}`}>{h.time}</dd>
               </div>
             ))}
           </dl>
@@ -46,8 +46,8 @@ const schema = {
           <dl class="mt-4 divide-y divide-line">
             {hours.sauna.map((h) => (
               <div class="flex justify-between gap-3 py-3">
-                <dt class="text-muted">{h.day}</dt>
-                <dd class="font-semibold text-right text-ink">{h.time}</dd>
+                <dt class="text-muted min-w-0">{h.day}</dt>
+                <dd class="font-semibold text-right text-ink whitespace-nowrap flex-shrink-0">{h.time}</dd>
               </div>
             ))}
           </dl>

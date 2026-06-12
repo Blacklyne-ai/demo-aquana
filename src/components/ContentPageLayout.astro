@@ -37,11 +37,11 @@ const primary = page.ctaHref
   />
 
   {page.facts && page.facts.length > 0 && (
-    <section class={`section-paper pb-4 tint-${tint}`}>
+    <section class={`section-paper pb-0 tint-${tint}`}>
       <div class="container-aq">
-        <div class="relative z-20 flex flex-wrap gap-3 -mt-12 md:-mt-20">
+        <div class="relative z-20 flex flex-wrap gap-3 -mt-10 md:-mt-14">
           {page.facts.map((f) => (
-            <div class="flex-1 min-w-[140px] rounded-2xl border border-line bg-white p-5 fade-in" style="box-shadow: var(--shadow-lift);">
+            <div class="flex-1 min-w-[150px] rounded-2xl border border-line bg-white p-5 fade-in" style="box-shadow: var(--shadow-lift);">
               <div class="text-[0.72rem] font-mono uppercase tracking-wider text-muted-light">{f.label}</div>
               <div class="font-display font-extrabold text-ink text-lg mt-1 leading-tight">{f.value}</div>
             </div>
@@ -52,7 +52,7 @@ const primary = page.ctaHref
   )}
 
   {(page.sections ?? []).map((s, i) => (
-    <section class={`${i % 2 === 0 ? 'section-paper' : 'section-stone'} py-16 md:py-20 tint-${tint}`}>
+    <section class={`${i % 2 === 0 ? 'section-paper' : 'section-stone'} ${i === 0 && page.facts && page.facts.length ? 'pt-12 md:pt-14 pb-16 md:pb-20' : 'py-16 md:py-20'} tint-${tint}`}>
       <div class="container-aq">
         {s.image ? (
           <div class={`grid lg:grid-cols-12 gap-10 lg:gap-14 items-center ${i % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>

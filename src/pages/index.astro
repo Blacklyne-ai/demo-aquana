@@ -236,8 +236,8 @@ const heroWorlds = worlds.map((w, i) => ({ ...w, bg: HERO_BG[i], accent: HERO_AC
           <dl class="mt-4 divide-y divide-line text-[0.92rem]">
             {hours.bad.map((h) => (
               <div class="flex justify-between gap-3 py-2.5">
-                <dt class="text-muted">{h.day}</dt>
-                <dd class={`font-semibold text-right ${h.closed ? 'text-muted-light' : 'text-ink'}`}>{h.time}</dd>
+                <dt class="text-muted min-w-0">{h.day}</dt>
+                <dd class={`font-semibold text-right whitespace-nowrap flex-shrink-0 ${h.closed ? 'text-muted-light' : 'text-ink'}`}>{h.time}</dd>
               </div>
             ))}
           </dl>
@@ -250,8 +250,8 @@ const heroWorlds = worlds.map((w, i) => ({ ...w, bg: HERO_BG[i], accent: HERO_AC
           <dl class="mt-4 divide-y divide-line text-[0.92rem]">
             {hours.sauna.map((h) => (
               <div class="flex justify-between gap-3 py-2.5">
-                <dt class="text-muted">{h.day}</dt>
-                <dd class="font-semibold text-right text-ink">{h.time}</dd>
+                <dt class="text-muted min-w-0">{h.day}</dt>
+                <dd class="font-semibold text-right text-ink whitespace-nowrap flex-shrink-0">{h.time}</dd>
               </div>
             ))}
           </dl>
