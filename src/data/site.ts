@@ -188,7 +188,7 @@ export const legalNav = [
   { href: '/impressum', label: 'Impressum' },
   { href: '/datenschutz', label: 'Datenschutz' },
   { href: '/agb', label: 'AGB' },
-  { href: '/haus-und-badeordnung', label: 'Haus- & Badeordnung' },
+  { href: '/haus-und-badeordnung', label: 'Hausordnung' },
 ];
 
 // ── Hero-Trust-Strip (· getrennt) ─────────────────────────────

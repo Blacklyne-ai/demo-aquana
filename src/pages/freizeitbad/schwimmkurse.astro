@@ -28,14 +28,14 @@ import { courses, courseRegistration } from '../../data/courses';
         {courses.map((c) => (
           <a href={`/freizeitbad/schwimmkurse/${c.slug}`} class="card-feature card-accent group fade-in flex gap-5">
             <span class="step-badge flex-shrink-0 !w-14 !h-14 !text-xl">{c.step}</span>
-            <div class="flex-1">
-              <h3 class="font-display font-extrabold text-ink text-xl group-hover:text-accent transition-colors">{c.title}</h3>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-display font-extrabold text-ink text-xl group-hover:text-accent transition-colors break-words hyphens-auto" lang="de">{c.title}</h3>
               <p class="text-[0.85rem] font-semibold text-accent mt-0.5">{c.audience}</p>
               <p class="text-muted text-[0.92rem] leading-relaxed mt-3 text-pretty">{c.lead}</p>
-              <div class="flex flex-wrap gap-x-5 gap-y-1 mt-4 text-[0.85rem] text-muted">
-                <span class="flex items-center gap-1.5"><Icon name="Clock" size={14} class="text-accent" /> {c.scope}</span>
-                <span class="flex items-center gap-1.5"><Icon name="Users" size={14} class="text-accent" /> {c.groupSize}</span>
-                <span class="flex items-center gap-1.5 font-bold text-ink"><Icon name="Euro" size={14} class="text-accent" /> {c.price}</span>
+              <div class="flex flex-wrap gap-x-5 gap-y-1.5 mt-4 text-[0.85rem] text-muted">
+                <span class="inline-flex items-center gap-1.5"><Icon name="Clock" size={14} class="text-accent flex-shrink-0" /> {c.scope}</span>
+                <span class="inline-flex items-center gap-1.5"><Icon name="Users" size={14} class="text-accent flex-shrink-0" /> {c.groupSize}</span>
+                <span class="font-bold text-ink whitespace-nowrap">{c.price.split(' inkl')[0]}</span>
               </div>
             </div>
           </a>

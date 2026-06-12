@@ -35,15 +35,17 @@ const perks = [
           ))}
         </div>
       </div>
-      <div class="tint-aqua fade-in rounded-2xl p-7 md:p-8 bg-ink-deep relative overflow-hidden">
+      <div class="tint-aqua fade-in rounded-2xl p-7 md:p-8 relative overflow-hidden" style="background: rgb(var(--rgb-ink-deep));">
         <div class="glow-orb" style="width:260px;height:260px;top:-90px;right:-50px;background:rgb(var(--rgb-aqua));opacity:0.16;" aria-hidden="true"></div>
-        <span class="accent-tile mb-4 relative" style="background: rgb(var(--rgb-aqua) / 0.15); color: rgb(var(--rgb-aqua-bright)); border-color: rgb(var(--rgb-aqua) / 0.3);"><Icon name="Mail" size={24} strokeWidth={1.9} /></span>
-        <h3 class="font-display font-extrabold text-white text-xl relative">Jetzt anmelden</h3>
-        <p class="text-white/65 text-[0.95rem] leading-relaxed mt-2 text-pretty">Geben Sie Ihre E-Mail-Adresse ein - der Rest geht über Ihr Mailprogramm. Kein Tracking, kein Spam.</p>
-        <form id="nl-form" class="flex flex-col sm:flex-row gap-2.5 mt-5">
-          <input type="email" required placeholder="Ihre E-Mail-Adresse" aria-label="E-Mail-Adresse" class="flex-1 rounded-pill px-5 py-3 text-[0.92rem] text-white bg-white/10 border border-white/20 placeholder:text-white/40 focus:outline-none focus:border-aqua" />
-          <button type="submit" class="btn btn-tide">Anmelden</button>
-        </form>
+        <div class="relative z-10">
+          <span class="accent-tile mb-4" style="background: rgb(var(--rgb-aqua) / 0.15); color: rgb(var(--rgb-aqua-bright)); border-color: rgb(var(--rgb-aqua) / 0.3);"><Icon name="Mail" size={24} strokeWidth={1.9} /></span>
+          <h3 class="font-display font-extrabold text-white text-xl">Jetzt anmelden</h3>
+          <p class="text-white/70 text-[0.95rem] leading-relaxed mt-2 text-pretty">Geben Sie Ihre E-Mail-Adresse ein - der Rest geht über Ihr Mailprogramm. Kein Tracking, kein Spam.</p>
+          <form id="nl-form" class="flex flex-col sm:flex-row gap-2.5 mt-5">
+            <input type="email" required placeholder="Ihre E-Mail-Adresse" aria-label="E-Mail-Adresse" class="flex-1 rounded-pill px-5 py-3 text-[0.92rem] text-white bg-white/10 border border-white/20 placeholder:text-white/40 focus:outline-none focus:border-aqua" />
+            <button type="submit" class="btn btn-tide">Anmelden</button>
+          </form>
+        </div>
       </div>
     </div>
   </section>

@@ -16,7 +16,7 @@ const isActive = (item: (typeof nav)[number]) =>
     >
       <!-- Original-Logo (Wortmarke der alten Site, 1:1) -->
       <a href="/" class="flex items-center flex-shrink-0" aria-label="AQUANA - Startseite">
-        <img src="/logo.jpg" alt="AQUANA - Euregio Freizeitbad Würselen" width="160" height="96" class="h-8 md:h-9 w-auto" />
+        <img src="/logo.png" alt="AQUANA - Euregio Freizeitbad Würselen" width="138" height="71" class="h-8 md:h-9 w-auto" />
       </a>
 
       <!-- Desktop nav -->
@@ -44,10 +44,10 @@ const isActive = (item: (typeof nav)[number]) =>
 
       <!-- Right cluster -->
       <div class="flex items-center gap-1.5">
-        <!-- DE / NL Sprachschalter (NL = vorbereiteter Platzhalter, Operator-TODO) -->
+        <!-- DE / NL Sprachschalter (NL klickbar → Hinweis-Toast, Operator-TODO) -->
         <div class="lang-switch hidden md:inline-flex" role="group" aria-label="Sprache">
           <span class="lang-on" aria-current="true">DE</span>
-          <span class="lang-off" aria-disabled="true" title="Nederlandse versie in voorbereiding">NL</span>
+          <button type="button" class="lang-off lang-nl" title="Nederlandse versie in voorbereiding">NL</button>
         </div>
         <a href={whatsappLink} target="_blank" rel="noopener" class="wa-btn hidden lg:inline-flex" aria-label="WhatsApp">
           <Icon name="MessageCircle" size={17} strokeWidth={2.1} />
@@ -90,7 +90,7 @@ const isActive = (item: (typeof nav)[number]) =>
       </div>
       <div class="lang-switch self-start mt-3" role="group" aria-label="Sprache">
         <span class="lang-on" aria-current="true">DE</span>
-        <span class="lang-off" aria-disabled="true" title="Nederlandse versie in voorbereiding">NL</span>
+        <button type="button" class="lang-off lang-nl" title="Nederlandse versie in voorbereiding">NL</button>
       </div>
     </nav>
   </div>
@@ -110,7 +110,31 @@ const isActive = (item: (typeof nav)[number]) =>
     font-family: var(--font-display); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em;
   }
   .lang-on { padding: 0.25rem 0.6rem; border-radius: 999px; background: rgb(var(--rgb-tide)); color: #fff; }
-  .lang-off { padding: 0.25rem 0.6rem; color: rgb(var(--rgb-ink) / 0.4); cursor: not-allowed; }
+  .lang-off {
+    padding: 0.25rem 0.6rem; border-radius: 999px; border: 0; cursor: pointer;
+    font: inherit; letter-spacing: inherit; background: transparent;
+    color: rgb(var(--rgb-ink) / 0.45); transition: color 0.2s ease, background 0.2s ease;
+  }
+  .lang-off:hover { color: rgb(var(--rgb-ink) / 0.8); background: rgb(var(--rgb-ink) / 0.06); }
+
+  /* Hinweis-Toast (NL noch in Vorbereitung) */
+  :global(.lang-toast) {
+    position: fixed; left: 50%; bottom: 1.4rem; transform: translate(-50%, 1.2rem);
+    z-index: 200; max-width: calc(100vw - 2rem);
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.7rem 1.15rem; border-radius: 999px;
+    font-family: var(--font-display); font-size: 0.85rem; font-weight: 600; color: #fff;
+    background: rgb(var(--rgb-ink-deep) / 0.85); border: 1px solid rgb(255 255 255 / 0.16);
+    backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%);
+    box-shadow: 0 18px 44px -16px rgb(6 27 54 / 0.7), inset 0 1px 0 rgb(255 255 255 / 0.14);
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  :global(.lang-toast.show) { opacity: 1; transform: translate(-50%, 0); }
+  :global(.lang-toast .lang-toast-tag) {
+    display: inline-flex; align-items: center; padding: 0.1rem 0.4rem; border-radius: 6px;
+    font-size: 0.68rem; font-weight: 800; letter-spacing: 0.06em;
+    background: rgb(var(--rgb-tide)); color: #fff;
+  }
 
   .wa-btn {
     width: 38px; height: 38px; border-radius: 999px; align-items: center; justify-content: center;
@@ -171,11 +195,32 @@ const isActive = (item: (typeof nav)[number]) =>
     document.body.style.overflow = open ? 'hidden' : '';
   }
 
+  // Hinweis-Toast für den NL-Schalter (Operator-TODO: echte NL-Version)
+  let langToastTimer: ReturnType<typeof setTimeout> | undefined;
+  function showLangToast() {
+    let toast = document.getElementById('lang-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'lang-toast';
+      toast.className = 'lang-toast';
+      toast.setAttribute('role', 'status');
+      toast.innerHTML = '<span class="lang-toast-tag" aria-hidden="true">NL</span> De Nederlandse versie is in voorbereiding.';
+      document.body.appendChild(toast);
+    }
+    // Reflow erzwingen, damit die Transition auch beim Re-Trigger läuft
+    void toast.offsetWidth;
+    toast.classList.add('show');
+    if (langToastTimer) clearTimeout(langToastTimer);
+    langToastTimer = setTimeout(() => toast && toast.classList.remove('show'), 2800);
+  }
+
   document.addEventListener('astro:page-load', () => {
     const toggle = document.getElementById('menu-toggle');
     const menu = document.getElementById('mobile-menu');
     toggle?.addEventListener('click', (e) => { e.stopPropagation(); setOpen(!isOpen()); });
     menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+    document.querySelectorAll('.lang-nl').forEach((btn) =>
+      btn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); showLangToast(); }));
     document.body.style.overflow = '';
   });
 
