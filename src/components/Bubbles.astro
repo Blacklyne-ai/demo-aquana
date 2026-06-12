@@ -1,0 +1,90 @@
+---
+// Wiederverwendbare Wasserblasen-Ebene (Unterwasser-Optik).
+//  variant 'dark'  -> heller Rand + Glow (auf dunklem/fotografischem Grund)
+//  variant 'light' -> zarte Aqua-Ringe (auf hellen Sektionen)
+//  front           -> z-index:1 (Hero: über Foto/Overlay) statt -1 (hinter Inhalt)
+// Animation pausiert per Default; ein IntersectionObserver schaltet nur die
+// sichtbaren Felder scharf (Performance über die ganze Seite).
+interface Props { variant?: 'dark' | 'light'; front?: boolean }
+const { variant = 'dark', front = false } = Astro.props;
+
+// 16 Blasen, deterministisch gestreut. l=links%, s=px, d=Dauer s, delay s, x=Drift px, o=Opacity
+const BUBBLES = [
+  { l: 5,  s: 14, d: 17, delay: 0,  x: 14,  o: 0.34 },
+  { l: 13, s: 26, d: 23, delay: 5,  x: -18, o: 0.26 },
+  { l: 21, s: 9,  d: 14, delay: 2,  x: 10,  o: 0.4 },
+  { l: 29, s: 18, d: 20, delay: 8,  x: 22,  o: 0.3 },
+  { l: 37, s: 33, d: 26, delay: 1,  x: -14, o: 0.2 },
+  { l: 45, s: 11, d: 15, delay: 6,  x: 16,  o: 0.38 },
+  { l: 53, s: 21, d: 22, delay: 3,  x: -20, o: 0.28 },
+  { l: 61, s: 8,  d: 13, delay: 9,  x: 12,  o: 0.42 },
+  { l: 68, s: 29, d: 25, delay: 4,  x: 18,  o: 0.22 },
+  { l: 75, s: 15, d: 18, delay: 7,  x: -16, o: 0.34 },
+  { l: 83, s: 23, d: 24, delay: 2,  x: 20,  o: 0.26 },
+  { l: 90, s: 10, d: 14, delay: 10, x: -12, o: 0.4 },
+  { l: 95, s: 17, d: 21, delay: 5,  x: 14,  o: 0.3 },
+  { l: 9,  s: 12, d: 16, delay: 12, x: -10, o: 0.36 },
+  { l: 49, s: 13, d: 18, delay: 11, x: 8,   o: 0.34 },
+  { l: 79, s: 19, d: 22, delay: 14, x: -22, o: 0.26 },
+];
+---
+<div class:list={['bubble-field', `bubble-${variant}`, front && 'bubble-front']} aria-hidden="true">
+  {BUBBLES.map((b) => (
+    <span class="bubble" style={`left:${b.l}%; width:${b.s}px; height:${b.s}px; --dur:${b.d}s; --delay:${b.delay}s; --drift:${b.x}px; --op:${b.o};`}></span>
+  ))}
+</div>
+
+<style>
+  .bubble-field { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; }
+  .bubble-front { z-index: 1; }
+  .bubble {
+    position: absolute; bottom: -6%; border-radius: 50%; opacity: 0;
+    animation: bubble-rise var(--dur, 18s) ease-in var(--delay, 0s) infinite;
+    animation-play-state: paused;
+    will-change: transform, opacity;
+  }
+  .bubble-field.in-view .bubble { animation-play-state: running; }
+
+  /* dunkler Grund: heller Rand + Aqua-Glow */
+  .bubble-dark .bubble {
+    background: radial-gradient(circle at 30% 26%, rgb(255 255 255 / 0.72) 0%, rgb(255 255 255 / 0.12) 22%, rgb(120 215 240 / 0.07) 50%, transparent 64%);
+    border: 1px solid rgb(255 255 255 / 0.45);
+    box-shadow: inset 0 1px 4px rgb(255 255 255 / 0.4), 0 0 14px rgb(120 215 240 / 0.42);
+  }
+  /* heller Grund: zarte Aqua-Ringe */
+  .bubble-light .bubble {
+    background: radial-gradient(circle at 30% 26%, rgb(255 255 255 / 0.55) 0%, rgb(21 168 208 / 0.06) 42%, transparent 64%);
+    border: 1px solid rgb(21 168 208 / 0.26);
+    box-shadow: inset 0 1px 3px rgb(255 255 255 / 0.6), 0 0 10px rgb(21 168 208 / 0.16);
+  }
+
+  @keyframes bubble-rise {
+    0%   { transform: translate3d(0, 0, 0) scale(0.5); opacity: 0; }
+    8%   { opacity: calc(var(--op, 0.34) + 0.3); }
+    55%  { transform: translate3d(var(--drift, 12px), -55vh, 0) scale(1); }
+    85%  { opacity: calc(var(--op, 0.34) + 0.3); }
+    100% { transform: translate3d(0, -106vh, 0) scale(1.15); opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bubble { animation: none; opacity: 0; }
+  }
+</style>
+
+<script>
+  // Nur sichtbare Blasen-Felder animieren (Performance). View-Transition-sicher.
+  function initBubbles() {
+    const fields = Array.from(document.querySelectorAll('.bubble-field'));
+    if (!fields.length) return;
+    if (!('IntersectionObserver' in window)) { fields.forEach((f) => f.classList.add('in-view')); return; }
+    const w = window as any;
+    if (w.__bubbleIO) w.__bubbleIO.disconnect();
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.target.classList.toggle('in-view', e.isIntersecting)),
+      { rootMargin: '120px 0px' }
+    );
+    fields.forEach((f) => io.observe(f));
+    w.__bubbleIO = io;
+  }
+  document.addEventListener('astro:page-load', initBubbles);
+</script>
